@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CodeGarage | Profile</title>
+
+<style>
+body{
+  background:#020617;
+  color:white;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial;
+}
+.card{
+  background:#020617;
+  border:1px solid #1e293b;
+  padding:30px;
+  width:350px;
+  border-radius:16px;
+}
+button{
+  width:100%;
+  padding:12px;
+  margin-top:20px;
+  border:none;
+  border-radius:10px;
+  background:#2563eb;
+  color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2>My Profile</h2>
+  <p><b>Email:</b> <span id="email"></span></p>
+  <p><b>User ID:</b> <span id="id"></span></p>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+const API = "https://codegarage-backend-production.up.railway.app";
+const token = localStorage.getItem("token");
+
+if(!token) window.location="login.html";
+
+fetch(`${API}/profile`,{
+  headers:{ Authorization: token }
+})
+.then(r=>r.json())
+.then(d=>{
+  email.innerText=d.email;
+  id.innerText=d.id;
+});
+
+function logout(){
+  localStorage.clear();
+  window.location="login.html";
+}
+</script>
+
+</body>
+</html>

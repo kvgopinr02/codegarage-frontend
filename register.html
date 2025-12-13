@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CodeGarage | Register</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  font-family:Arial, sans-serif;
+  background:#020617;
+  color:white;
+}
+
+/* LEFT PANEL */
+.left{
+  flex:1;
+  padding:60px;
+  background:linear-gradient(135deg,#020617,#0f172a);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.left p{color:#94a3b8}
+
+.code-box{
+  margin-top:25px;
+  font-family:monospace;
+  background:#020617;
+  padding:20px;
+  border-radius:12px;
+  color:#22c55e;
+  border:1px solid #1e293b;
+  min-height:160px;
+}
+
+/* RIGHT PANEL */
+.right{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.form{
+  background:#020617;
+  border:1px solid #1e293b;
+  padding:35px;
+  width:360px;
+  border-radius:16px;
+}
+
+input,button{
+  width:100%;
+  padding:12px;
+  margin-top:15px;
+  border-radius:10px;
+  font-size:14px;
+}
+
+input{
+  background:#020617;
+  border:1px solid #334155;
+  color:white;
+}
+
+button{
+  background:#2563eb;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+
+.count{
+  margin-top:15px;
+  text-align:center;
+  font-size:13px;
+  color:#94a3b8;
+}
+
+a{color:#60a5fa;text-decoration:none}
+</style>
+</head>
+
+<body>
+
+<div class="left">
+  <h1>CodeGarage</h1>
+  <p>Build • Compile • Deploy</p>
+  <div class="code-box" id="code"></div>
+</div>
+
+<div class="right">
+  <div class="form">
+    <h2>Create Account</h2>
+
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+
+    <button onclick="register()">Create Account</button>
+
+    <div class="count">
+      👥 Total Users: <span id="totalUsers">Loading...</span>
+    </div>
+
+    <p style="text-align:center">
+      Already registered? <a href="login.html">Login</a>
+    </p>
+  </div>
+</div>
+
+<script>
+const API = "https://codegarage-backend-production.up.railway.app";
+
+/* code typing animation */
+const lines=[
+  "const CodeGarage = () => {",
+  "  console.log('Hello Developer');",
+  "}",
+  "npm install skills",
+  "deploy --success"
+];
+let i=0;
+(function type(){
+  if(i<lines.length){
+    code.innerHTML+=lines[i++]+"<br>";
+    setTimeout(type,600);
+  }
+})();
+
+/* register */
+async function register(){
+  if(!email.value || !password.value){
+    alert("Enter email & password");
+    return;
+  }
+
+  const res = await fetch(`${API}/register`,{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify({
+      email:email.value.trim(),
+      password:password.value.trim()
+    })
+  });
+
+  const data = await res.json();
+  if(data.success){
+    alert("Account created successfully!");
+    window.location="login.html";
+  }else{
+    alert(data.message || "User already exists");
+  }
+}
+
+/* total users */
+fetch(`${API}/users/count`)
+.then(r=>r.json())
+.then(d=>totalUsers.innerText=d.count)
+.catch(()=>totalUsers.innerText="—");
+</script>
+
+</body>
+</html>
