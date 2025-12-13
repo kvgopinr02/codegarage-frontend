@@ -46,6 +46,10 @@ button{
   color:white;
   border:none;
 }
+a{
+  color:#60a5fa;
+  text-decoration:none;
+}
 </style>
 </head>
 
@@ -62,8 +66,10 @@ button{
     <input id="email" type="email" placeholder="Email">
     <input id="password" type="password" placeholder="Password">
     <button onclick="login()">Login</button>
-    <p style="text-align:center">
-      New user? <a href="register.html">Create account</a>
+
+    <p style="text-align:center;margin-top:15px;">
+      New user?
+      <a href="./register.html">Create Account</a>
     </p>
   </div>
 </div>
@@ -90,5 +96,6 @@ async function login(){
   }
 }
 </script>
+
 </body>
 </html>
