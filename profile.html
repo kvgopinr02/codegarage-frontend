@@ -1,65 +1,156 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CodeGarage | Profile</title>
 
 <style>
 body{
+  margin:0;
+  font-family:Arial, sans-serif;
   background:#020617;
   color:white;
-  height:100vh;
+}
+
+/* NAVBAR */
+nav{
   display:flex;
-  justify-content:center;
+  justify-content:space-between;
   align-items:center;
-  font-family:Arial;
+  padding:15px 30px;
+  border-bottom:1px solid #1e293b;
 }
-.card{
-  background:#020617;
-  border:1px solid #1e293b;
-  padding:30px;
-  width:350px;
-  border-radius:16px;
+
+nav a{
+  color:#cbd5f5;
+  text-decoration:none;
+  margin-left:20px;
 }
-button{
-  width:100%;
-  padding:12px;
-  margin-top:20px;
-  border:none;
-  border-radius:10px;
-  background:#2563eb;
+
+nav a:hover{
   color:white;
+}
+
+/* CONTAINER */
+.container{
+  max-width:700px;
+  margin:40px auto;
+  padding:30px;
+  border:1px solid #1e293b;
+  border-radius:16px;
+  background:#020617;
+  animation:fadeUp 1s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(20px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+h2{
+  margin-bottom:20px;
+}
+
+.info{
+  margin:15px 0;
+  font-size:16px;
+}
+
+.label{
+  color:#94a3b8;
+}
+
+/* BUTTON */
+button{
+  margin-top:30px;
+  padding:12px 25px;
+  border-radius:10px;
+  background:#ef4444;
+  color:white;
+  border:none;
+  cursor:pointer;
+  transition:.3s;
+}
+
+button:hover{
+  background:#dc2626;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<script>
+/* Protect page */
+if(!localStorage.getItem("token")){
+  window.location="login.html";
+}
+</script>
+
+<!-- NAV -->
+<nav>
+  <div>🚀 CodeGarage</div>
+  <div>
+    <a href="home.html">Home</a>
+    <a href="profile.html">My Account</a>
+    <a href="login.html" onclick="logout()">Logout</a>
+  </div>
+</nav>
+
+<!-- PROFILE -->
+<div class="container">
   <h2>My Profile</h2>
-  <p><b>Email:</b> <span id="email"></span></p>
-  <p><b>User ID:</b> <span id="id"></span></p>
+
+  <div class="info">
+    <span class="label">Username:</span>
+    <span id="username">Loading...</span>
+  </div>
+
+  <div class="info">
+    <span class="label">Email:</span>
+    <span id="email">Loading...</span>
+  </div>
+
+  <div class="info">
+    <span class="label">Account Status:</span>
+    <span>Active</span>
+  </div>
+
   <button onclick="logout()">Logout</button>
 </div>
 
 <script>
 const API = "https://codegarage-backend-production.up.railway.app";
-const token = localStorage.getItem("token");
 
-if(!token) window.location="login.html";
+/* Fetch profile */
+async function loadProfile(){
+  try{
+    const res = await fetch(`${API}/profile`,{
+      headers:{
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
+    });
 
-fetch(`${API}/profile`,{
-  headers:{ Authorization: token }
-})
-.then(r=>r.json())
-.then(d=>{
-  email.innerText=d.email;
-  id.innerText=d.id;
-});
+    const data = await res.json();
+
+    if(data.success){
+      document.getElementById("username").innerText = data.user.username;
+      document.getElementById("email").innerText = data.user.email;
+    }else{
+      logout();
+    }
+  }catch(err){
+    logout();
+  }
+}
 
 function logout(){
   localStorage.clear();
   window.location="login.html";
 }
+
+loadProfile();
 </script>
 
 </body>
