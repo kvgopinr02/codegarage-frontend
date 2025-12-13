@@ -1,51 +1,108 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>CodeGarage | Login</title>
+<meta charset="UTF-8">
+<title>CodeGarage | Register</title>
 
 <style>
 body{
   margin:0;
   height:100vh;
   display:flex;
-  font-family:Arial;
+  font-family:Arial, sans-serif;
   background:#020617;
   color:white;
 }
+
+/* LEFT PANEL */
 .left{
   flex:1;
   padding:60px;
   background:linear-gradient(135deg,#020617,#0f172a);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
+
+.left h1{
+  margin-bottom:10px;
+}
+
+.left p{
+  color:#94a3b8;
+}
+
+.code-box{
+  margin-top:25px;
+  font-family:monospace;
+  background:#020617;
+  padding:20px;
+  border-radius:12px;
+  color:#22c55e;
+  border:1px solid #1e293b;
+  min-height:160px;
+  font-size:14px;
+}
+
+/* RIGHT PANEL */
 .right{
   flex:1;
   display:flex;
   justify-content:center;
   align-items:center;
 }
-.box{
+
+.form{
   background:#020617;
   border:1px solid #1e293b;
   padding:35px;
-  width:340px;
+  width:360px;
   border-radius:16px;
+  box-shadow:0 0 40px rgba(0,0,0,.6);
 }
+
+.form h2{
+  text-align:center;
+  margin-bottom:20px;
+}
+
 input,button{
   width:100%;
   padding:12px;
   margin-top:15px;
   border-radius:10px;
+  font-size:14px;
 }
+
 input{
   background:#020617;
   border:1px solid #334155;
   color:white;
 }
+
+input:focus{
+  outline:none;
+  border-color:#2563eb;
+}
+
 button{
   background:#2563eb;
   color:white;
   border:none;
+  cursor:pointer;
 }
+
+button:hover{
+  background:#1d4ed8;
+}
+
+.count{
+  margin-top:15px;
+  text-align:center;
+  font-size:13px;
+  color:#94a3b8;
+}
+
 a{
   color:#60a5fa;
   text-decoration:none;
@@ -55,46 +112,103 @@ a{
 
 <body>
 
+<!-- LEFT -->
 <div class="left">
   <h1>CodeGarage</h1>
-  <p>Authenticate • Code • Repeat</p>
+  <p>Build • Compile • Deploy</p>
+
+  <div class="code-box" id="code"></div>
 </div>
 
+<!-- RIGHT -->
 <div class="right">
-  <div class="box">
-    <h2>Login</h2>
+  <div class="form">
+    <h2>Create Account</h2>
+
+    <!-- ✅ Username Added -->
+    <input id="username" type="text" placeholder="Username">
     <input id="email" type="email" placeholder="Email">
     <input id="password" type="password" placeholder="Password">
-    <button onclick="login()">Login</button>
+
+    <button onclick="register()">Create Account</button>
+
+    <div class="count">
+      👥 Total Users: <span id="totalUsers">Loading...</span>
+    </div>
 
     <p style="text-align:center;margin-top:15px;">
-      New user?
-      <a href="./register.html">Create Account</a>
+      Already have an account?
+      <a href="login.html">Login</a>
     </p>
   </div>
 </div>
 
 <script>
-const API = "https://codegarage-backend-production.up.railway.app";
+/* ---------- CODE TYPING ANIMATION ---------- */
+const lines = [
+  "const CodeGarage = () => {",
+  "  console.log('Hello Developer');",
+  "}",
+  "",
+  "npm install skills",
+  "deploy --success"
+];
 
-async function login(){
-  const res = await fetch(`${API}/login`,{
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body:JSON.stringify({
-      email:email.value,
-      password:password.value
-    })
-  });
-
-  const data = await res.json();
-  if(data.success){
-    localStorage.setItem("token",data.token);
-    window.location="home.html";
-  }else{
-    alert("Invalid credentials");
+let index = 0;
+function typeCode(){
+  if(index < lines.length){
+    document.getElementById("code").innerHTML += lines[index] + "<br>";
+    index++;
+    setTimeout(typeCode, 600);
   }
 }
+typeCode();
+
+/* ---------- REGISTER FUNCTION ---------- */
+async function register(){
+  const usernameVal = document.getElementById("username").value.trim();
+  const emailVal = document.getElementById("email").value.trim();
+  const passwordVal = document.getElementById("password").value.trim();
+
+  if(!usernameVal || !emailVal || !passwordVal){
+    alert("Please fill all fields");
+    return;
+  }
+
+  try{
+    const res = await fetch("http://localhost:5000/register",{
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body:JSON.stringify({
+        username: usernameVal,
+        email: emailVal,
+        password: passwordVal
+      })
+    });
+
+    const data = await res.json();
+
+    if(data.success){
+      alert("Account created successfully!");
+      window.location = "login.html";
+    }else{
+      alert(data.message || "User already exists");
+    }
+  }catch(err){
+    alert("Backend not running or network error");
+    console.error(err);
+  }
+}
+
+/* ---------- TOTAL USERS ---------- */
+fetch("http://localhost:5000/users/count")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("totalUsers").innerText = data.count;
+  })
+  .catch(() => {
+    document.getElementById("totalUsers").innerText = "—";
+  });
 </script>
 
 </body>
