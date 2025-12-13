@@ -125,6 +125,8 @@ a{
   <div class="form">
     <h2>Create Account</h2>
 
+    <!-- ✅ Username Added -->
+    <input id="username" type="text" placeholder="Username">
     <input id="email" type="email" placeholder="Email">
     <input id="password" type="password" placeholder="Password">
 
@@ -164,11 +166,12 @@ typeCode();
 
 /* ---------- REGISTER FUNCTION ---------- */
 async function register(){
+  const usernameVal = document.getElementById("username").value.trim();
   const emailVal = document.getElementById("email").value.trim();
   const passwordVal = document.getElementById("password").value.trim();
 
-  if(!emailVal || !passwordVal){
-    alert("Please enter email and password");
+  if(!usernameVal || !emailVal || !passwordVal){
+    alert("Please fill all fields");
     return;
   }
 
@@ -177,6 +180,7 @@ async function register(){
       method:"POST",
       headers:{ "Content-Type":"application/json" },
       body:JSON.stringify({
+        username: usernameVal,
         email: emailVal,
         password: passwordVal
       })
