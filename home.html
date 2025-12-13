@@ -1,47 +1,303 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CodeGarage | Home</title>
 
 <style>
-body{margin:0;font-family:Arial;background:#020617;color:white}
-nav{
+/* ---------- GLOBAL ---------- */
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
   background:#020617;
-  border-bottom:1px solid #1e293b;
-  padding:15px;
+  color:white;
+}
+
+/* ---------- NAVBAR ---------- */
+nav{
   display:flex;
   justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  background:#020617;
+  border-bottom:1px solid #1e293b;
 }
-nav a{
-  color:white;
-  margin-left:20px;
+
+.logo{
+  font-size:22px;
+  font-weight:bold;
+}
+
+/* NAV LINKS */
+.nav-links a{
+  position:relative;
+  color:#cbd5f5;
   text-decoration:none;
+  margin-left:25px;
+  font-size:15px;
+  padding:6px 0;
+  transition:color .3s ease, transform .3s ease;
 }
-.main{padding:40px}
+
+/* underline animation */
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:0%;
+  height:2px;
+  background:linear-gradient(90deg,#2563eb,#22c55e);
+  transition:width .35s ease;
+}
+
+/* hover */
+.nav-links a:hover{
+  color:white;
+  transform:translateY(-2px);
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+/* active */
+.nav-links a.active{
+  color:white;
+}
+.nav-links a.active::after{
+  width:100%;
+}
+
+/* MY ACCOUNT */
+.account{
+  display:flex;
+  align-items:center;
+  cursor:pointer;
+  transition:transform .3s ease;
+}
+
+.account span{
+  margin-right:10px;
+  font-size:14px;
+}
+
+.account img{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:2px solid #2563eb;
+  transition:box-shadow .3s ease, transform .3s ease;
+}
+
+.account:hover{
+  transform:translateY(-2px);
+}
+
+.account:hover img{
+  transform:scale(1.08);
+  box-shadow:0 0 15px rgba(37,99,235,.8);
+}
+
+/* ---------- HEADER ---------- */
+header{
+  padding:50px 20px;
+  text-align:center;
+  animation:fadeDown 1.2s ease;
+}
+
+@keyframes fadeDown{
+  from{opacity:0; transform:translateY(-20px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+h1{
+  font-size:42px;
+  letter-spacing:2px;
+  animation:glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 10px rgba(37,99,235,.4)}
+  to{text-shadow:0 0 25px rgba(37,99,235,.9)}
+}
+
+.subtitle{
+  color:#94a3b8;
+  font-size:18px;
+}
+
+/* ---------- ABOUT ---------- */
+.about{
+  max-width:900px;
+  margin:30px auto;
+  padding:25px;
+  border:1px solid #1e293b;
+  border-radius:16px;
+  animation:fadeUp 1.3s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(20px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+.about p{
+  color:#cbd5f5;
+  line-height:1.6;
+}
+
+/* ---------- LANGUAGES ---------- */
+.languages{
+  margin-top:40px;
+  text-align:center;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  max-width:900px;
+  margin:30px auto;
+}
+
+.card{
+  background:#020617;
+  border:1px solid #1e293b;
+  padding:25px;
+  border-radius:16px;
+  cursor:pointer;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 15px 40px rgba(37,99,235,.4);
+}
+
+.card p{
+  color:#94a3b8;
+}
+
+/* ---------- MARQUEE ---------- */
+.marquee{
+  margin:50px 0 30px;
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+.track{
+  display:inline-block;
+  animation:marquee 18s linear infinite;
+}
+
+.track span{
+  margin:0 40px;
+  font-family:monospace;
+  font-size:20px;
+  color:#22c55e;
+}
+
+@keyframes marquee{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+  margin-top:40px;
+  padding:20px;
+  text-align:center;
+  border-top:1px solid #1e293b;
+  color:#94a3b8;
+}
 </style>
 </head>
 
 <body>
 
-<script>
-if(!localStorage.getItem("token")){
-  window.location="login.html";
-}
-</script>
-
+<!-- NAVBAR -->
 <nav>
-  <div>🚀 CodeGarage</div>
-  <div>
-    <a href="profile.html">👤 My Account</a>
-    <a href="#">📚 Content</a>
-    <a href="login.html" onclick="localStorage.clear()">🚪 Logout</a>
+  <div class="logo">🚀 CodeGarage</div>
+
+  <div class="nav-links">
+    <a href="#" class="active">Home</a>
+    <a href="#">Languages</a>
+    <a href="#">Practice</a>
+    <a href="#">About</a>
+  </div>
+
+  <div class="account" onclick="goProfile()">
+    <span>My Account</span>
+    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile">
   </div>
 </nav>
 
-<div class="main">
+<!-- HEADER -->
+<header>
   <h1>Welcome to CodeGarage</h1>
-  <p>Your developer workspace.</p>
+  <p class="subtitle">Your Developer Learning Hub</p>
+</header>
+
+<!-- ABOUT -->
+<div class="about">
+  <h2>About CodeGarage</h2>
+  <p>
+    CodeGarage is a modern learning platform designed for engineering students
+    and aspiring developers. It focuses on programming languages, DSA, and
+    real-world problem solving to help you grow academically and professionally.
+  </p>
 </div>
+
+<!-- LANGUAGES -->
+<div class="languages">
+  <h2>Programming Languages</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Python</h3>
+      <p>Beginner to Advanced</p>
+    </div>
+
+    <div class="card">
+      <h3>Java</h3>
+      <p>OOP & Core Concepts</p>
+    </div>
+
+    <div class="card">
+      <h3>C Language</h3>
+      <p>Foundations of Programming</p>
+    </div>
+
+    <div class="card">
+      <h3>DSA</h3>
+      <p>Data Structures & Algorithms</p>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="track">
+    <span>Python</span>
+    <span>Java</span>
+    <span>C</span>
+    <span>DSA</span>
+    <span>Problem Solving</span>
+    <span>Placements</span>
+  </div>
+</div>
+
+<footer>
+  © 2025 CodeGarage • Learn • Code • Grow
+</footer>
+
+<script>
+function goProfile(){
+  window.location="profile.html";
+}
+</script>
 
 </body>
 </html>
