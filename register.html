@@ -24,13 +24,7 @@ body{
   justify-content:center;
 }
 
-.left h1{
-  margin-bottom:10px;
-}
-
-.left p{
-  color:#94a3b8;
-}
+.left p{color:#94a3b8;}
 
 .code-box{
   margin-top:25px;
@@ -41,7 +35,6 @@ body{
   color:#22c55e;
   border:1px solid #1e293b;
   min-height:160px;
-  font-size:14px;
 }
 
 /* RIGHT PANEL */
@@ -58,12 +51,6 @@ body{
   padding:35px;
   width:360px;
   border-radius:16px;
-  box-shadow:0 0 40px rgba(0,0,0,.6);
-}
-
-.form h2{
-  text-align:center;
-  margin-bottom:20px;
 }
 
 input,button{
@@ -71,18 +58,12 @@ input,button{
   padding:12px;
   margin-top:15px;
   border-radius:10px;
-  font-size:14px;
 }
 
 input{
   background:#020617;
   border:1px solid #334155;
   color:white;
-}
-
-input:focus{
-  outline:none;
-  border-color:#2563eb;
 }
 
 button{
@@ -92,9 +73,7 @@ button{
   cursor:pointer;
 }
 
-button:hover{
-  background:#1d4ed8;
-}
+button:hover{background:#1d4ed8;}
 
 .count{
   margin-top:15px;
@@ -103,10 +82,7 @@ button:hover{
   color:#94a3b8;
 }
 
-a{
-  color:#60a5fa;
-  text-decoration:none;
-}
+a{color:#60a5fa;text-decoration:none;}
 </style>
 </head>
 
@@ -116,7 +92,6 @@ a{
 <div class="left">
   <h1>CodeGarage</h1>
   <p>Build • Compile • Deploy</p>
-
   <div class="code-box" id="code"></div>
 </div>
 
@@ -125,7 +100,6 @@ a{
   <div class="form">
     <h2>Create Account</h2>
 
-    <!-- ✅ Username Added -->
     <input id="username" type="text" placeholder="Username">
     <input id="email" type="email" placeholder="Email">
     <input id="password" type="password" placeholder="Password">
@@ -144,7 +118,10 @@ a{
 </div>
 
 <script>
-/* ---------- CODE TYPING ANIMATION ---------- */
+/* BACKEND URL */
+const API = "https://codegarage-backend-production.up.railway.app";
+
+/* CODE ANIMATION */
 const lines = [
   "const CodeGarage = () => {",
   "  console.log('Hello Developer');",
@@ -153,62 +130,53 @@ const lines = [
   "npm install skills",
   "deploy --success"
 ];
-
-let index = 0;
+let i = 0;
 function typeCode(){
-  if(index < lines.length){
-    document.getElementById("code").innerHTML += lines[index] + "<br>";
-    index++;
+  if(i < lines.length){
+    document.getElementById("code").innerHTML += lines[i] + "<br>";
+    i++;
     setTimeout(typeCode, 600);
   }
 }
 typeCode();
 
-/* ---------- REGISTER FUNCTION ---------- */
+/* REGISTER */
 async function register(){
-  const usernameVal = document.getElementById("username").value.trim();
-  const emailVal = document.getElementById("email").value.trim();
-  const passwordVal = document.getElementById("password").value.trim();
+  const username = document.getElementById("username").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
 
-  if(!usernameVal || !emailVal || !passwordVal){
+  if(!username || !email || !password){
     alert("Please fill all fields");
     return;
   }
 
   try{
-    const res = await fetch("http://localhost:5000/register",{
+    const res = await fetch(`${API}/register`,{
       method:"POST",
       headers:{ "Content-Type":"application/json" },
-      body:JSON.stringify({
-        username: usernameVal,
-        email: emailVal,
-        password: passwordVal
-      })
+      body:JSON.stringify({ username, email, password })
     });
 
     const data = await res.json();
 
     if(data.success){
       alert("Account created successfully!");
-      window.location = "login.html";
+      window.location="login.html";
     }else{
-      alert(data.message || "User already exists");
+      alert(data.message || "Registration failed");
     }
   }catch(err){
-    alert("Backend not running or network error");
     console.error(err);
+    alert("Backend not running or network error");
   }
 }
 
-/* ---------- TOTAL USERS ---------- */
-fetch("http://localhost:5000/users/count")
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("totalUsers").innerText = data.count;
-  })
-  .catch(() => {
-    document.getElementById("totalUsers").innerText = "—";
-  });
+/* TOTAL USERS */
+fetch(`${API}/users/count`)
+  .then(r=>r.json())
+  .then(d=> document.getElementById("totalUsers").innerText = d.count)
+  .catch(()=> document.getElementById("totalUsers").innerText="—");
 </script>
 
 </body>
