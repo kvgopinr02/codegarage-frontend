@@ -2,165 +2,301 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CodeGarage | Register</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeGarage | Home</title>
 
 <style>
+/* ---------- GLOBAL ---------- */
 body{
   margin:0;
-  height:100vh;
-  display:flex;
   font-family:Arial, sans-serif;
   background:#020617;
   color:white;
 }
 
-/* LEFT PANEL */
-.left{
-  flex:1;
-  padding:60px;
-  background:linear-gradient(135deg,#020617,#0f172a);
+/* ---------- NAVBAR ---------- */
+nav{
   display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-
-.left p{color:#94a3b8}
-
-.code-box{
-  margin-top:25px;
-  font-family:monospace;
-  background:#020617;
-  padding:20px;
-  border-radius:12px;
-  color:#22c55e;
-  border:1px solid #1e293b;
-  min-height:160px;
-}
-
-/* RIGHT PANEL */
-.right{
-  flex:1;
-  display:flex;
-  justify-content:center;
+  justify-content:space-between;
   align-items:center;
-}
-
-.form{
+  padding:15px 30px;
   background:#020617;
-  border:1px solid #1e293b;
-  padding:35px;
-  width:360px;
-  border-radius:16px;
+  border-bottom:1px solid #1e293b;
 }
 
-input,button{
+.logo{
+  font-size:22px;
+  font-weight:bold;
+}
+
+/* NAV LINKS */
+.nav-links a{
+  position:relative;
+  color:#cbd5f5;
+  text-decoration:none;
+  margin-left:25px;
+  font-size:15px;
+  padding:6px 0;
+  transition:color .3s ease, transform .3s ease;
+}
+
+/* underline animation */
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:0%;
+  height:2px;
+  background:linear-gradient(90deg,#2563eb,#22c55e);
+  transition:width .35s ease;
+}
+
+/* hover */
+.nav-links a:hover{
+  color:white;
+  transform:translateY(-2px);
+}
+
+.nav-links a:hover::after{
   width:100%;
-  padding:12px;
-  margin-top:15px;
-  border-radius:10px;
+}
+
+/* active */
+.nav-links a.active{
+  color:white;
+}
+.nav-links a.active::after{
+  width:100%;
+}
+
+/* MY ACCOUNT */
+.account{
+  display:flex;
+  align-items:center;
+  cursor:pointer;
+  transition:transform .3s ease;
+}
+
+.account span{
+  margin-right:10px;
   font-size:14px;
 }
 
-input{
-  background:#020617;
-  border:1px solid #334155;
-  color:white;
+.account img{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:2px solid #2563eb;
+  transition:box-shadow .3s ease, transform .3s ease;
 }
 
-button{
-  background:#2563eb;
-  color:white;
-  border:none;
-  cursor:pointer;
+.account:hover{
+  transform:translateY(-2px);
 }
 
-.count{
-  margin-top:15px;
+.account:hover img{
+  transform:scale(1.08);
+  box-shadow:0 0 15px rgba(37,99,235,.8);
+}
+
+/* ---------- HEADER ---------- */
+header{
+  padding:50px 20px;
   text-align:center;
-  font-size:13px;
+  animation:fadeDown 1.2s ease;
+}
+
+@keyframes fadeDown{
+  from{opacity:0; transform:translateY(-20px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+h1{
+  font-size:42px;
+  letter-spacing:2px;
+  animation:glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 10px rgba(37,99,235,.4)}
+  to{text-shadow:0 0 25px rgba(37,99,235,.9)}
+}
+
+.subtitle{
+  color:#94a3b8;
+  font-size:18px;
+}
+
+/* ---------- ABOUT ---------- */
+.about{
+  max-width:900px;
+  margin:30px auto;
+  padding:25px;
+  border:1px solid #1e293b;
+  border-radius:16px;
+  animation:fadeUp 1.3s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(20px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+.about p{
+  color:#cbd5f5;
+  line-height:1.6;
+}
+
+/* ---------- LANGUAGES ---------- */
+.languages{
+  margin-top:40px;
+  text-align:center;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  max-width:900px;
+  margin:30px auto;
+}
+
+.card{
+  background:#020617;
+  border:1px solid #1e293b;
+  padding:25px;
+  border-radius:16px;
+  cursor:pointer;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 15px 40px rgba(37,99,235,.4);
+}
+
+.card p{
   color:#94a3b8;
 }
 
-a{color:#60a5fa;text-decoration:none}
+/* ---------- MARQUEE ---------- */
+.marquee{
+  margin:50px 0 30px;
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+.track{
+  display:inline-block;
+  animation:marquee 18s linear infinite;
+}
+
+.track span{
+  margin:0 40px;
+  font-family:monospace;
+  font-size:20px;
+  color:#22c55e;
+}
+
+@keyframes marquee{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+  margin-top:40px;
+  padding:20px;
+  text-align:center;
+  border-top:1px solid #1e293b;
+  color:#94a3b8;
+}
 </style>
 </head>
 
 <body>
 
-<div class="left">
-  <h1>CodeGarage</h1>
-  <p>Build • Compile • Deploy</p>
-  <div class="code-box" id="code"></div>
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">🚀 CodeGarage</div>
+
+  <div class="nav-links">
+    <a href="#" class="active">Home</a>
+    <a href="#">Languages</a>
+    <a href="#">Practice</a>
+    <a href="#">About</a>
+  </div>
+
+  <div class="account" onclick="goProfile()">
+    <span>My Account</span>
+    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile">
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header>
+  <h1>Welcome to CodeGarage</h1>
+  <p class="subtitle">Your Developer Learning Hub</p>
+</header>
+
+<!-- ABOUT -->
+<div class="about">
+  <h2>About CodeGarage</h2>
+  <p>
+    CodeGarage is a modern learning platform designed for engineering students
+    and aspiring developers. It focuses on programming languages, DSA, and
+    real-world problem solving to help you grow academically and professionally.
+  </p>
 </div>
 
-<div class="right">
-  <div class="form">
-    <h2>Create Account</h2>
+<!-- LANGUAGES -->
+<div class="languages">
+  <h2>Programming Languages</h2>
 
-    <input id="email" type="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Password">
-
-    <button onclick="register()">Create Account</button>
-
-    <div class="count">
-      👥 Total Users: <span id="totalUsers">Loading...</span>
+  <div class="grid">
+    <div class="card">
+      <h3>Python</h3>
+      <p>Beginner to Advanced</p>
     </div>
 
-    <p style="text-align:center">
-      Already registered? <a href="login.html">Login</a>
-    </p>
+    <div class="card">
+      <h3>Java</h3>
+      <p>OOP & Core Concepts</p>
+    </div>
+
+    <div class="card">
+      <h3>C Language</h3>
+      <p>Foundations of Programming</p>
+    </div>
+
+    <div class="card">
+      <h3>DSA</h3>
+      <p>Data Structures & Algorithms</p>
+    </div>
   </div>
 </div>
 
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="track">
+    <span>Python</span>
+    <span>Java</span>
+    <span>C</span>
+    <span>DSA</span>
+    <span>Problem Solving</span>
+    <span>Placements</span>
+  </div>
+</div>
+
+<footer>
+  © 2025 CodeGarage • Learn • Code • Grow
+</footer>
+
 <script>
-const API = "https://codegarage-backend-production.up.railway.app";
-
-/* code typing animation */
-const lines=[
-  "const CodeGarage = () => {",
-  "  console.log('Hello Developer');",
-  "}",
-  "npm install skills",
-  "deploy --success"
-];
-let i=0;
-(function type(){
-  if(i<lines.length){
-    code.innerHTML+=lines[i++]+"<br>";
-    setTimeout(type,600);
-  }
-})();
-
-/* register */
-async function register(){
-  if(!email.value || !password.value){
-    alert("Enter email & password");
-    return;
-  }
-
-  const res = await fetch(`${API}/register`,{
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body:JSON.stringify({
-      email:email.value.trim(),
-      password:password.value.trim()
-    })
-  });
-
-  const data = await res.json();
-  if(data.success){
-    alert("Account created successfully!");
-    window.location="login.html";
-  }else{
-    alert(data.message || "User already exists");
-  }
+function goProfile(){
+  window.location="profile.html";
 }
-
-/* total users */
-fetch(`${API}/users/count`)
-.then(r=>r.json())
-.then(d=>totalUsers.innerText=d.count)
-.catch(()=>totalUsers.innerText="—");
 </script>
 
 </body>
