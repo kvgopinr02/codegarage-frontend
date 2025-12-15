@@ -2,19 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CodeGarage | Register</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeGarage | Auth</title>
 
 <style>
+*{box-sizing:border-box}
+
 body{
   margin:0;
-  height:100vh;
+  min-height:100vh;
   display:flex;
   font-family:Arial, sans-serif;
   background:#020617;
   color:white;
 }
 
-/* LEFT PANEL */
+/* ---------- LEFT ---------- */
 .left{
   flex:1;
   padding:60px;
@@ -24,20 +27,35 @@ body{
   justify-content:center;
 }
 
-.left p{color:#94a3b8;}
-
-.code-box{
-  margin-top:25px;
-  font-family:monospace;
-  background:#020617;
-  padding:20px;
-  border-radius:12px;
-  color:#22c55e;
-  border:1px solid #1e293b;
-  min-height:160px;
+.left h1{
+  font-size:42px;
+  color:#60a5fa;
 }
 
-/* RIGHT PANEL */
+.left p{
+  color:#94a3b8;
+}
+
+/* CODE BOX */
+.code-box{
+  margin-top:25px;
+  padding:20px;
+  border-radius:12px;
+  background:#020617;
+  border:1px solid #1e293b;
+  font-family:monospace;
+  color:#22c55e;
+  min-height:150px;
+  animation:codeGlow 2.5s infinite alternate;
+}
+
+/* CODE GLOW */
+@keyframes codeGlow{
+  from{ box-shadow:0 0 8px rgba(34,197,94,.25); }
+  to{ box-shadow:0 0 22px rgba(34,197,94,.5); }
+}
+
+/* ---------- RIGHT ---------- */
 .right{
   flex:1;
   display:flex;
@@ -45,44 +63,113 @@ body{
   align-items:center;
 }
 
-.form{
+/* AUTH BOX */
+.box{
+  width:340px;
+  min-height:420px;
   background:#020617;
   border:1px solid #1e293b;
-  padding:35px;
-  width:360px;
-  border-radius:16px;
+  padding:30px;
+  border-radius:14px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 0 40px rgba(0,0,0,.6);
 }
 
-input,button{
+/* FORMS */
+.form{
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  opacity:0;
+  transform:translateX(120%);
+  transition:all .45s cubic-bezier(.4,0,.2,1);
+}
+
+.form.show{
+  opacity:1;
+  transform:translateX(0);
+  position:relative;
+}
+
+.form.hide{
+  opacity:0;
+  transform:translateX(-120%);
+  pointer-events:none;
+}
+
+/* INPUTS */
+input{
   width:100%;
   padding:12px;
   margin-top:15px;
-  border-radius:10px;
-}
-
-input{
-  background:#020617;
+  border-radius:8px;
   border:1px solid #334155;
+  background:#020617;
   color:white;
+  transition:.3s;
 }
 
+input:focus{
+  outline:none;
+  border-color:#60a5fa;
+  box-shadow:0 0 10px rgba(96,165,250,.35);
+}
+
+/* BUTTON */
 button{
-  background:#2563eb;
-  color:white;
+  width:100%;
+  margin-top:20px;
+  padding:12px;
   border:none;
+  border-radius:8px;
+  background:linear-gradient(90deg,#2563eb,#22c55e);
+  color:white;
+  font-weight:bold;
   cursor:pointer;
+  transition:.3s;
 }
 
-button:hover{background:#1d4ed8;}
+button:hover{
+  transform:translateY(-2px) scale(1.02);
+  box-shadow:0 0 18px rgba(96,165,250,.45);
+}
 
-.count{
+button:active{
+  transform:scale(.98);
+}
+
+/* SWITCH */
+.switch{
   margin-top:15px;
+  text-align:center;
+  font-size:14px;
+}
+
+.switch span{
+  color:#60a5fa;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.switch span:hover{
+  text-shadow:0 0 8px rgba(96,165,250,.6);
+}
+
+/* TOTAL USERS */
+.count{
+  margin-top:18px;
   text-align:center;
   font-size:13px;
   color:#94a3b8;
 }
 
-a{color:#60a5fa;text-decoration:none;}
+/* MOBILE */
+@media(max-width:768px){
+  body{flex-direction:column}
+  .left{text-align:center}
+}
 </style>
 </head>
 
@@ -97,32 +184,55 @@ a{color:#60a5fa;text-decoration:none;}
 
 <!-- RIGHT -->
 <div class="right">
-  <div class="form">
-    <h2>Create Account</h2>
+  <div class="box">
 
-    <input id="username" type="text" placeholder="Username">
-    <input id="email" type="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Password">
+    <!-- REGISTER -->
+    <div id="registerForm" class="form show">
+      <h2>Register</h2>
 
-    <button onclick="register()">Create Account</button>
+      <input id="rUser" placeholder="Username">
+      <input id="rEmail" type="email" placeholder="Email">
+      <input id="rPass" type="password" placeholder="Password">
 
-    <div class="count">
-      👥 Total Users: <span id="totalUsers">Loading...</span>
+      <button onclick="register()">Register</button>
+
+      <div class="count">
+        👥 Total Users: <span id="totalUsers">Loading...</span>
+      </div>
+
+      <div class="switch">
+        Already have an account?
+        <span onclick="showLogin()">Login</span>
+      </div>
     </div>
 
-    <p style="text-align:center;margin-top:15px;">
-      Already have an account?
-      <a href="login.html">Login</a>
-    </p>
+    <!-- LOGIN -->
+    <div id="loginForm" class="form hide">
+      <h2>Login</h2>
+
+      <input id="lEmail" type="email" placeholder="Email">
+      <input id="lPass" type="password" placeholder="Password">
+
+      <button onclick="login()">Login</button>
+
+      <div class="count">
+        👥 Total Users: <span id="totalUsers2">Loading...</span>
+      </div>
+
+      <div class="switch">
+        New user?
+        <span onclick="showRegister()">Create account</span>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <script>
-/* BACKEND URL */
 const API = "https://codegarage-backend-production.up.railway.app";
 
-/* CODE ANIMATION */
-const lines = [
+/* ===== CODE TYPING EFFECT ===== */
+const codeLines = [
   "const CodeGarage = () => {",
   "  console.log('Hello Developer');",
   "}",
@@ -130,53 +240,96 @@ const lines = [
   "npm install skills",
   "deploy --success"
 ];
+
 let i = 0;
 function typeCode(){
-  if(i < lines.length){
-    document.getElementById("code").innerHTML += lines[i] + "<br>";
+  if(i < codeLines.length){
+    document.getElementById("code").innerHTML += codeLines[i] + "<br>";
     i++;
-    setTimeout(typeCode, 600);
+    setTimeout(typeCode, 550);
   }
 }
 typeCode();
 
-/* REGISTER */
+/* ===== TOGGLE ===== */
+function showLogin(){
+  registerForm.classList.replace("show","hide");
+  loginForm.classList.replace("hide","show");
+}
+
+function showRegister(){
+  loginForm.classList.replace("show","hide");
+  registerForm.classList.replace("hide","show");
+}
+
+/* ===== REGISTER ===== */
 async function register(){
-  const username = document.getElementById("username").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
+  const username = rUser.value.trim();
+  const email = rEmail.value.trim();
+  const password = rPass.value.trim();
 
   if(!username || !email || !password){
-    alert("Please fill all fields");
+    alert("Fill all fields");
     return;
   }
 
-  try{
-    const res = await fetch(`${API}/register`,{
-      method:"POST",
-      headers:{ "Content-Type":"application/json" },
-      body:JSON.stringify({ username, email, password })
-    });
+  const res = await fetch(`${API}/register`,{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify({ username, email, password })
+  });
 
-    const data = await res.json();
-
-    if(data.success){
-      alert("Account created successfully!");
-      window.location="login.html";
-    }else{
-      alert(data.message || "Registration failed");
-    }
-  }catch(err){
-    console.error(err);
-    alert("Backend not running or network error");
+  const data = await res.json();
+  if(data.success){
+    alert("Registered successfully. Please login.");
+    rUser.value = rEmail.value = rPass.value = "";
+    showLogin();
+    loadUsers();
+  }else{
+    alert(data.message || "Registration failed");
   }
 }
 
-/* TOTAL USERS */
-fetch(`${API}/users/count`)
-  .then(r=>r.json())
-  .then(d=> document.getElementById("totalUsers").innerText = d.count)
-  .catch(()=> document.getElementById("totalUsers").innerText="—");
+/* ===== LOGIN ===== */
+async function login(){
+  const email = lEmail.value.trim();
+  const password = lPass.value.trim();
+
+  if(!email || !password){
+    alert("Fill all fields");
+    return;
+  }
+
+  const res = await fetch(`${API}/login`,{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify({ email, password })
+  });
+
+  const data = await res.json();
+  if(data.success){
+    localStorage.setItem("token", data.token);
+    alert("Login successful");
+    window.location = "home.html";
+  }else{
+    alert("Invalid login");
+  }
+}
+
+/* ===== TOTAL USERS ===== */
+function loadUsers(){
+  fetch(`${API}/users/count`)
+    .then(r=>r.json())
+    .then(d=>{
+      totalUsers.innerText = d.count;
+      totalUsers2.innerText = d.count;
+    })
+    .catch(()=>{
+      totalUsers.innerText = "—";
+      totalUsers2.innerText = "—";
+    });
+}
+loadUsers();
 </script>
 
 </body>
