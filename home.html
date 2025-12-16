@@ -22,6 +22,7 @@ nav{
   padding:15px 30px;
   background:#020617;
   border-bottom:1px solid #1e293b;
+  position:relative;
 }
 
 .logo{
@@ -30,6 +31,11 @@ nav{
 }
 
 /* NAV LINKS */
+.nav-links{
+  display:flex;
+  align-items:center;
+}
+
 .nav-links a{
   position:relative;
   color:#cbd5f5;
@@ -37,10 +43,9 @@ nav{
   margin-left:25px;
   font-size:15px;
   padding:6px 0;
-  transition:color .3s ease, transform .3s ease;
+  transition:.3s;
 }
 
-/* underline animation */
 .nav-links a::after{
   content:"";
   position:absolute;
@@ -49,33 +54,24 @@ nav{
   width:0%;
   height:2px;
   background:linear-gradient(90deg,#2563eb,#22c55e);
-  transition:width .35s ease;
+  transition:.35s;
 }
 
-/* hover */
 .nav-links a:hover{
   color:white;
   transform:translateY(-2px);
 }
 
-.nav-links a:hover::after{
-  width:100%;
-}
-
-/* active */
-.nav-links a.active{
-  color:white;
-}
+.nav-links a:hover::after,
 .nav-links a.active::after{
   width:100%;
 }
 
-/* MY ACCOUNT */
+/* ACCOUNT */
 .account{
   display:flex;
   align-items:center;
   cursor:pointer;
-  transition:transform .3s ease;
 }
 
 .account span{
@@ -88,33 +84,23 @@ nav{
   height:34px;
   border-radius:50%;
   border:2px solid #2563eb;
-  transition:box-shadow .3s ease, transform .3s ease;
 }
 
-.account:hover{
-  transform:translateY(-2px);
-}
-
-.account:hover img{
-  transform:scale(1.08);
-  box-shadow:0 0 15px rgba(37,99,235,.8);
+/* HAMBURGER */
+.menu-btn{
+  display:none;
+  font-size:26px;
+  cursor:pointer;
 }
 
 /* ---------- HEADER ---------- */
 header{
   padding:50px 20px;
   text-align:center;
-  animation:fadeDown 1.2s ease;
-}
-
-@keyframes fadeDown{
-  from{opacity:0; transform:translateY(-20px)}
-  to{opacity:1; transform:translateY(0)}
 }
 
 h1{
   font-size:42px;
-  letter-spacing:2px;
   animation:glow 3s ease-in-out infinite alternate;
 }
 
@@ -135,12 +121,6 @@ h1{
   padding:25px;
   border:1px solid #1e293b;
   border-radius:16px;
-  animation:fadeUp 1.3s ease;
-}
-
-@keyframes fadeUp{
-  from{opacity:0; transform:translateY(20px)}
-  to{opacity:1; transform:translateY(0)}
 }
 
 .about p{
@@ -167,8 +147,7 @@ h1{
   border:1px solid #1e293b;
   padding:25px;
   border-radius:16px;
-  cursor:pointer;
-  transition:transform .3s ease, box-shadow .3s ease;
+  transition:.3s;
 }
 
 .card:hover{
@@ -182,7 +161,7 @@ h1{
 
 /* ---------- MARQUEE ---------- */
 .marquee{
-  margin:50px 0 30px;
+  margin:40px 0;
   overflow:hidden;
   white-space:nowrap;
 }
@@ -193,9 +172,9 @@ h1{
 }
 
 .track span{
-  margin:0 40px;
+  margin:0 30px;
   font-family:monospace;
-  font-size:20px;
+  font-size:18px;
   color:#22c55e;
 }
 
@@ -206,12 +185,167 @@ h1{
 
 /* ---------- FOOTER ---------- */
 footer{
-  margin-top:40px;
   padding:20px;
   text-align:center;
   border-top:1px solid #1e293b;
   color:#94a3b8;
 }
+
+/* ---------- MOBILE ---------- */
+@media(max-width:768px){
+
+  nav{
+    padding:15px 20px;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .nav-links{
+    position:absolute;
+    top:65px;
+    left:0;
+    width:100%;
+    background:#020617;
+    flex-direction:column;
+    align-items:center;
+    display:none;
+    border-bottom:1px solid #1e293b;
+  }
+
+  .nav-links a{
+    margin:15px 0;
+    font-size:16px;
+  }
+
+  .nav-links.show{
+    display:flex;
+  }
+
+  .account{
+    display:none;
+  }
+
+  h1{
+    font-size:30px;
+  }
+
+  .subtitle{
+    font-size:16px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+    padding:0 15px;
+  }
+
+  .track span{
+    font-size:16px;
+  }
+}
+.lang-btn{
+  display:inline-block;
+  margin-top:18px;
+  padding:10px 22px;
+  border-radius:25px;
+  font-size:14px;
+  text-decoration:none;
+  color:white;
+  background:linear-gradient(90deg,#2563eb,#22c55e);
+  transition:.35s;
+}
+
+.lang-btn:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 30px rgba(34,197,94,.45);
+}
+/* ---------- PLACEMENT GUIDE ---------- */
+.placement-section{
+  max-width:900px;
+  margin:60px auto;
+  padding:35px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#020617,#0f172a);
+  border:1px solid #1e293b;
+  cursor:pointer;
+  transition:.4s cubic-bezier(.4,0,.2,1);
+  position:relative;
+  overflow:hidden;
+}
+
+/* glow background */
+.placement-section::before{
+  content:"";
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle, rgba(37,99,235,.25), transparent 70%);
+  opacity:0;
+  transition:.4s;
+}
+
+.placement-section:hover::before{
+  opacity:1;
+}
+
+.placement-section:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(37,99,235,.45);
+}
+
+.placement-content{
+  position:relative;
+  z-index:2;
+}
+
+.placement-content h2{
+  margin:0;
+  font-size:28px;
+  color:#60a5fa;
+}
+
+.placement-content p{
+  margin:12px 0 18px;
+  color:#cbd5f5;
+  line-height:1.6;
+  max-width:650px;
+}
+
+.placement-btn{
+  display:inline-block;
+  padding:10px 18px;
+  border-radius:8px;
+  background:linear-gradient(90deg,#2563eb,#22c55e);
+  font-weight:bold;
+  transition:.3s;
+}
+
+.placement-section:hover .placement-btn{
+  transform:translateX(6px);
+  box-shadow:0 0 15px rgba(96,165,250,.6);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .placement-section{
+    margin:40px 15px;
+    padding:28px;
+  }
+  .placement-content h2{
+    font-size:24px;
+  }
+}
+.placement-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* centers content horizontally */
+  text-align: center;       /* centers text */
+}
+
+
 </style>
 </head>
 
@@ -221,16 +355,18 @@ footer{
 <nav>
   <div class="logo">🚀 CodeGarage</div>
 
-  <div class="nav-links">
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+  <div class="nav-links" id="menu">
     <a href="#" class="active">Home</a>
     <a href="#">Languages</a>
-    <a href="#">Practice</a>
+    <a href="Semester-pdfs.html">Semester PDFs</a>
     <a href="#">About</a>
   </div>
 
   <div class="account" onclick="goProfile()">
     <span>My Account</span>
-    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile">
+    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
   </div>
 </nav>
 
@@ -242,14 +378,36 @@ footer{
 
 <!-- ABOUT -->
 <div class="about">
-  <h2>About CodeGarage</h2>
+  <section class="about-codegarage">
+  <h2>CodeGarage</h2>
   <p>
-    CodeGarage is a modern learning platform designed for engineering students
-    and aspiring developers. It focuses on programming languages, DSA, and
-    real-world problem solving to help you grow academically and professionally.
+    CodeGarage is a modern academic platform for engineering students.
+    It provides semester-wise PDFs, lab manuals, program codes, and YouTube video resources,
+    helping students understand subjects clearly and practice programming through structured semester content.
   </p>
+
+  <h3>Website Under Development</h3>
+  <p>
+    The website is currently under development, and all resources will be available soon.
+  </p>
+
+  <h3>Currently Available</h3>
+  <ul>
+    <li>CSE semester-wise notes (PDFs)</li>
+    <li>DSA programs and practice problems</li>
+    <li>C Language programs and examples</li>
+  </ul>
+
+  <p>
+    More semester notes, lab manuals, programming resources, and video content will be added shortly.
+    CodeGarage aims to support students with clear, organized, and practical learning materials
+    throughout their academic journey.
+  </p>
+</section>
+
 </div>
 
+<!-- LANGUAGES -->
 <!-- LANGUAGES -->
 <div class="languages">
   <h2>Programming Languages</h2>
@@ -258,24 +416,53 @@ footer{
     <div class="card">
       <h3>Python</h3>
       <p>Beginner to Advanced</p>
+      <a href="#" class="lang-btn">Explore Python</a>
     </div>
 
     <div class="card">
       <h3>Java</h3>
       <p>OOP & Core Concepts</p>
+      <a href="#" class="lang-btn">Explore Java</a>
     </div>
 
     <div class="card">
       <h3>C Language</h3>
       <p>Foundations of Programming</p>
+      <a href="https://kvgopinr02.github.io/gopi-2/newc.html" class="lang-btn">Explore C</a>
     </div>
 
     <div class="card">
       <h3>DSA</h3>
       <p>Data Structures & Algorithms</p>
+      <a href="https://kvgopinr02.github.io/gopi-2/new1.html" class="lang-btn">Explore DSA</a>
     </div>
   </div>
+
+  <!-- PLACEMENT GUIDE -->
+<div class="placement-section" onclick="goPlacement()">
+  <div class="placement-content">
+   <div class="placement-card">
+  <h2>Placement Guide</h2>
+  <p>
+    Roadmaps, interview preparation resources, aptitude practice,
+    coding questions, resume-building tips, and company-wise preparation
+    materials to help students prepare effectively for placements and
+    technical interviews.
+  </p>
+
 </div>
+
+
+
+
+
+
+    <span class="placement-btn">Explore Guide →</span>
+  </div>
+</div>
+
+</div>
+
 
 <!-- MARQUEE -->
 <div class="marquee">
@@ -284,7 +471,6 @@ footer{
     <span>Java</span>
     <span>C</span>
     <span>DSA</span>
-    <span>Problem Solving</span>
     <span>Placements</span>
   </div>
 </div>
@@ -294,9 +480,19 @@ footer{
 </footer>
 
 <script>
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+
 function goProfile(){
   window.location="profile.html";
 }
+function goPlacement(){
+  window.location = "https://kvgopinr02.github.io/gopi-2/Placement%20guide.pdf";
+  // OR online link:
+  // window.open("https://your-placement-guide-link.com","_self");
+}
+
 </script>
 
 </body>
