@@ -1,77 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>CodeGarage | Feedback</title>
-  <style>
-    body{
-      background:#020617;
-      color:white;
-      font-family:Arial;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-    }
-    .box{
-      border:1px solid #1e293b;
-      padding:25px;
-      width:380px;
-      border-radius:14px;
-    }
-    input,textarea,button{
-      width:100%;
-      margin:8px 0;
-      padding:10px;
-      background:#020617;
-      color:white;
-      border:1px solid #1e293b;
-      border-radius:8px;
-    }
-    button{
-      background:linear-gradient(90deg,#2563eb,#22c55e);
-      cursor:pointer;
-    }
-    .admin-btn{
-      background:#020617;
-      border:1px solid #2563eb;
-      margin-top:12px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>CodeGarage | Feedback</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#020617;
+  color:white;
+  font-family:Arial, sans-serif;
+}
+
+.box{
+  width:380px;
+  background:#020617;
+  border:1px solid #1e293b;
+  border-radius:16px;
+  padding:25px;
+  box-shadow:0 15px 40px rgba(37,99,235,.35);
+  animation:fadeUp .8s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(20px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+h2{
+  text-align:center;
+  margin-bottom:15px;
+}
+
+input, textarea{
+  width:100%;
+  margin:10px 0;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #1e293b;
+  background:#020617;
+  color:white;
+  resize:none;
+}
+
+input::placeholder, textarea::placeholder{
+  color:#94a3b8;
+}
+
+.btn{
+  width:100%;
+  padding:12px;
+  border-radius:25px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+  margin-top:10px;
+  transition:.3s;
+}
+
+.submit{
+  background:linear-gradient(90deg,#2563eb,#22c55e);
+  color:white;
+}
+
+.admin{
+  background:#020617;
+  border:1px solid #2563eb;
+  color:#cbd5f5;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(37,99,235,.4);
+}
+</style>
 </head>
 
 <body>
-  <div class="box">
-    <h2>User Feedback</h2>
 
-    <input id="name" placeholder="Name / Roll Number">
-    <textarea id="experience" placeholder="Your Experience"></textarea>
-    <textarea id="problems" placeholder="Problems Faced"></textarea>
-    <textarea id="suggestions" placeholder="Suggestions"></textarea>
+<div class="box">
+  <h2>User Feedback</h2>
 
-    <!-- SUBMIT -->
-    <button type="button" onclick="submitFeedback()">Submit Feedback</button>
+  <input id="name" placeholder="Name / Roll Number">
+  <textarea id="experience" placeholder="Your Experience"></textarea>
+  <textarea id="problems" placeholder="Problems Faced"></textarea>
+  <textarea id="suggestions" placeholder="Suggestions"></textarea>
 
-    <!-- ADMIN BUTTON -->
-    <button type="button" class="admin-btn" onclick="adminLogin()">Admin</button>
-  </div>
+  <button class="btn submit" type="button" onclick="submitFeedback()">Submit Feedback</button>
+  <button class="btn admin" type="button" onclick="adminLogin()">Admin</button>
+</div>
 
 <script>
 async function submitFeedback(){
   const token = localStorage.getItem("token");
-
   if(!token){
     alert("Please login first");
     return;
   }
 
-  const res = await fetch("http://localhost:5000/feedback", {
-    method: "POST",
-    headers: {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer " + localStorage.getItem("token")
-}
-,
-    body: JSON.stringify({
+  if(!name.value.trim()){
+    alert("Name / Roll Number required");
+    return;
+  }
+
+  const res = await fetch("http://localhost:5000/feedback",{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      "Authorization":"Bearer " + token
+    },
+    body:JSON.stringify({
       name: name.value.trim(),
       experience: experience.value.trim(),
       problems: problems.value.trim(),
@@ -81,23 +124,14 @@ async function submitFeedback(){
 
   if(res.ok){
     alert("Feedback submitted successfully");
-    document.querySelectorAll("input,textarea").forEach(e => e.value = "");
+    document.querySelectorAll("input,textarea").forEach(e=>e.value="");
   }else{
     alert("Error submitting feedback");
   }
 }
 
-
-  if(res.ok){
-    alert("Feedback submitted successfully");
-    document.querySelectorAll("input,textarea").forEach(e=>e.value="");
-  }else{
-    alert("Server error");
-  }
-
 function adminLogin(){
   const pass = prompt("Enter Admin Password");
-
   if(pass === "323103310125"){
     window.location = "admin.html";
   }else{
@@ -105,5 +139,6 @@ function adminLogin(){
   }
 }
 </script>
+
 </body>
 </html>
