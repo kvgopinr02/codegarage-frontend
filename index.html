@@ -5,7 +5,6 @@
 <title>CodeGarage | Learn • Code • Deploy</title>
 
 <style>
-/* ---------- RESET ---------- */
 *{
   box-sizing:border-box;
 }
@@ -14,7 +13,7 @@
 body{
   margin:0;
   height:100vh;
-  background:#020617; /* plain dark background */
+  background:#020617;
   color:white;
   font-family:Arial, sans-serif;
   display:flex;
@@ -54,7 +53,7 @@ p{
   margin-bottom:40px;
 }
 
-/* ---------- SMOOTH MARQUEE ---------- */
+/* ---------- MARQUEE ---------- */
 .marquee{
   width:100%;
   overflow:hidden;
@@ -89,13 +88,18 @@ button{
   background:#2563eb;
   color:white;
   cursor:pointer;
-  transition:transform .3s ease, box-shadow .3s ease;
+  transition:transform .3s ease, box-shadow .3s ease, opacity .3s;
   box-shadow:0 8px 25px rgba(37,99,235,.4);
 }
 
 button:hover{
   transform:translateY(-4px);
   box-shadow:0 18px 40px rgba(37,99,235,.6);
+}
+
+button:active{
+  transform:scale(.96);
+  opacity:.85;
 }
 </style>
 </head>
@@ -106,45 +110,39 @@ button:hover{
   <h1>CodeGarage</h1>
   <p>Your coding hub for languages, DSA & semester subjects</p>
 
-  <!-- MARQUEE -->
   <div class="marquee">
     <div class="track">
       <span>Python</span>
       <span>Java</span>
       <span>C Language</span>
       <span>DSA</span>
-      <span>Data Structures</span>
       <span>Operating Systems</span>
       <span>DBMS</span>
       <span>Computer Networks</span>
       <span>OOPs</span>
-      <span>Compiler Design</span>
 
       <!-- duplicate for smooth loop -->
       <span>Python</span>
       <span>Java</span>
       <span>C Language</span>
       <span>DSA</span>
-      <span>Data Structures</span>
       <span>Operating Systems</span>
       <span>DBMS</span>
       <span>Computer Networks</span>
       <span>OOPs</span>
-      <span>Compiler Design</span>
     </div>
   </div>
 
-  <button onclick="start()">  Get Started</button>
+  <button onclick="start()">Get Started</button>
 </div>
 
 <script>
 function start(){
-  window.location = "register.html";
+  // small delay for click animation
+  setTimeout(() => {
+    window.location.href = "register.html";
+  }, 200);
 }
-function start(){
-  window.location.href = "./login.html";
-}
-
 </script>
 
 </body>
