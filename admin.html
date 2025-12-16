@@ -46,16 +46,18 @@ async function load(){
   });
 
   list.innerHTML += `
-    <div class="card">
-      <b>Name / Roll:</b> ${f.name || "Not Provided"}<br>
-      <b>Experience:</b> ${f.experience}<br>
-      <b>Problems:</b> ${f.problems}<br>
-      <b>Suggestions:</b> ${f.suggestions}<br><br>
-      <small>
-        📅 ${formattedDate} &nbsp; ⏰ ${formattedTime}
-      </small>
-    </div>
-  `;
+  <div class="card">
+    <b>Email:</b> ${f.email}<br>
+    <b>Name / Roll:</b> ${f.name}<br>
+    <b>Experience:</b> ${f.experience}<br>
+    <b>Problems:</b> ${f.problems}<br>
+    <b>Suggestions:</b> ${f.suggestions}<br>
+    <small>
+      📅 ${new Date(f.createdAt).toLocaleString("en-IN")}
+    </small>
+  </div>
+`;
+
 });
 
 }
