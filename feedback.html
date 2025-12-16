@@ -50,17 +50,28 @@ button{
 
 <script>
 async function send(){
+  if(!name.value.trim()){
+    alert("Please enter Name / Roll Number");
+    return;
+  }
+
   await fetch("http://localhost:5000/feedback",{
     method:"POST",
     headers:{ "Content-Type":"application/json" },
     body:JSON.stringify({
-      name:name.value,
-      experience:experience.value,
-      problems:problems.value,
-      suggestions:suggestions.value
+      name: name.value.trim(),
+      experience: experience.value.trim(),
+      problems: problems.value.trim(),
+      suggestions: suggestions.value.trim()
     })
   });
-  alert("Feedback submitted");
+
+  alert("Feedback submitted successfully");
+
+  name.value="";
+  experience.value="";
+  problems.value="";
+  suggestions.value="";
 }
 
 function admin(){
