@@ -32,14 +32,32 @@ async function load(){
   const data = await res.json();
 
   data.forEach(f=>{
-    list.innerHTML+=`
-      <div class="card">
-        <b>${f.name}</b><br>
-        <b>Experience:</b> ${f.experience}<br>
-        <b>Problems:</b> ${f.problems}<br>
-        <b>Suggestions:</b> ${f.suggestions}
-      </div>`;
+  const date = new Date(f.createdAt);
+
+  const formattedDate = date.toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
   });
+
+  const formattedTime = date.toLocaleTimeString("en-IN", {
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+
+  list.innerHTML += `
+    <div class="card">
+      <b>Name / Roll:</b> ${f.name || "Not Provided"}<br>
+      <b>Experience:</b> ${f.experience}<br>
+      <b>Problems:</b> ${f.problems}<br>
+      <b>Suggestions:</b> ${f.suggestions}<br><br>
+      <small>
+        📅 ${formattedDate} &nbsp; ⏰ ${formattedTime}
+      </small>
+    </div>
+  `;
+});
+
 }
 load();
 </script>
