@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CodeGarage | Feedback</title>
+<style>
+body{
+  background:#020617;
+  color:white;
+  font-family:Arial;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+.box{
+  border:1px solid #1e293b;
+  padding:25px;
+  width:380px;
+  border-radius:14px;
+}
+input,textarea,button{
+  width:100%;
+  margin:8px 0;
+  padding:10px;
+  background:#020617;
+  color:white;
+  border:1px solid #1e293b;
+  border-radius:8px;
+}
+button{
+  background:linear-gradient(90deg,#2563eb,#22c55e);
+  cursor:pointer;
+}
+.admin{
+  background:#020617;
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+  <h2>Website Feedback</h2>
+  <input id="name" placeholder="Name / Roll No">
+  <textarea id="experience" placeholder="Experience"></textarea>
+  <textarea id="problems" placeholder="Problems faced"></textarea>
+  <textarea id="suggestions" placeholder="Suggestions"></textarea>
+  <button onclick="send()">Submit</button>
+  <button class="admin" onclick="admin()">Admin</button>
+</div>
+
+<script>
+async function send(){
+  await fetch("http://localhost:5000/feedback",{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify({
+      name:name.value,
+      experience:experience.value,
+      problems:problems.value,
+      suggestions:suggestions.value
+    })
+  });
+  alert("Feedback submitted");
+}
+
+function admin(){
+  const pass = prompt("Enter Admin Password");
+  if(pass==="323103310125"){
+    window.location="admin.html";
+  }else{
+    alert("Wrong password");
+  }
+}
+</script>
+</body>
+</html>

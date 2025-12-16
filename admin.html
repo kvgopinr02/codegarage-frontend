@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin | Feedback</title>
+<style>
+body{
+  background:#020617;
+  color:white;
+  font-family:Arial;
+  padding:20px;
+}
+.card{
+  border:1px solid #1e293b;
+  padding:15px;
+  margin-bottom:15px;
+  border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+<h2>Feedback Database</h2>
+<div id="list"></div>
+
+<script>
+async function load(){
+  const res = await fetch("http://localhost:5000/feedback/admin",{
+    headers:{ "admin-secret":"323103310125" }
+
+
+  });
+  const data = await res.json();
+
+  data.forEach(f=>{
+    list.innerHTML+=`
+      <div class="card">
+        <b>${f.name}</b><br>
+        <b>Experience:</b> ${f.experience}<br>
+        <b>Problems:</b> ${f.problems}<br>
+        <b>Suggestions:</b> ${f.suggestions}
+      </div>`;
+  });
+}
+load();
+</script>
+</body>
+</html>
