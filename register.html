@@ -136,6 +136,25 @@ button:hover{
   transform:translateY(-2px) scale(1.02);
   box-shadow:0 0 18px rgba(96,165,250,.45);
 }
+.pass-wrap{
+  position:relative;
+}
+
+.pass-wrap .eye{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  cursor:pointer;
+  font-size:16px;
+  color:#94a3b8;
+  user-select:none;
+}
+
+.pass-wrap .eye:hover{
+  color:#60a5fa;
+}
+
 
 button:active{
   transform:scale(.98);
@@ -171,6 +190,51 @@ button:active{
   body{flex-direction:column}
   .left{text-align:center}
 }
+/* PASSWORD EYE */
+.pass-wrap{
+  position:relative;
+}
+
+.pass-wrap input{
+  padding-right:40px;
+}
+
+.eye{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  width:18px;
+  height:12px;
+  border:2px solid #94a3b8;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+.eye::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:6px;
+  height:6px;
+  background:#94a3b8;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+}
+
+/* hidden state (cross eye) */
+.eye.hide::before{
+  content:"";
+  position:absolute;
+  width:22px;
+  height:2px;
+  background:#94a3b8;
+  top:50%;
+  left:-2px;
+  transform:rotate(45deg);
+}
+
 </style>
 </head>
 
@@ -193,7 +257,13 @@ button:active{
 
       <input id="rUser" placeholder="Username">
       <input id="rEmail" type="email" placeholder="Email">
-      <input id="rPass" type="password" placeholder="Password">
+  <div class="pass-wrap">
+  <input id="rPass" type="password" placeholder="Password">
+  <span class="eye" onclick="togglePass('rPass', this)"></span>
+</div>
+
+
+
 
       <button onclick="register()">Register</button>
 
@@ -212,7 +282,13 @@ button:active{
       <h2>Login</h2>
 
       <input id="lEmail" type="email" placeholder="Email">
-      <input id="lPass" type="password" placeholder="Password">
+      <div class="pass-wrap">
+  <input id="lPass" type="password" placeholder="Password">
+  <span class="eye" onclick="togglePass('lPass', this)"></span>
+</div>
+
+
+
 
       <button onclick="login()">Login</button>
 
@@ -331,6 +407,20 @@ function loadUsers(){
     });
 }
 loadUsers();
+function togglePass(id, el){
+  const input = document.getElementById(id);
+
+  if(input.type === "password"){
+    input.type = "text";
+    el.classList.add("hide");
+  }else{
+    input.type = "password";
+    el.classList.remove("hide");
+  }
+}
+
+
+
 </script>
 
 </body>
