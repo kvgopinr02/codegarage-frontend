@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeGarage – C++ Programs</title>
+
+<style>
+*{ box-sizing:border-box }
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#020617;
+    color:#e5e7eb;
+}
+
+/* ---------- CONTAINER ---------- */
+.container{
+    max-width:1200px;
+    margin:20px auto;
+    background:#020617;
+    border-radius:14px;
+    box-shadow:0 0 40px rgba(59,130,246,0.15);
+    overflow:hidden;
+}
+
+/* ---------- HEADER ---------- */
+header{
+    background:linear-gradient(135deg,#020617,#0f172a);
+    padding:20px;
+    text-align:center;
+    border-bottom:1px solid #1e293b;
+}
+
+header h1{
+    margin:0;
+    color:#60a5fa;
+}
+
+/* ---------- MAIN ---------- */
+main{
+    display:flex;
+    gap:20px;
+    padding:20px;
+}
+
+/* ---------- LEFT PANEL ---------- */
+.left{
+    width:35%;
+}
+
+#search{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #1e293b;
+    background:#020617;
+    color:#e5e7eb;
+    margin-bottom:15px;
+}
+
+/* ---------- PROGRAM ITEM ---------- */
+.section{
+    background:#020617;
+    border:1px solid #1e293b;
+    padding:14px 16px;
+    border-radius:10px;
+    margin-bottom:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.section span{
+    font-size:15px;
+    line-height:1.4;
+}
+
+/* ---------- BUTTON (RIGHT ALIGNED PERFECTLY) ---------- */
+.btn{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:8px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:13px;
+    white-space:nowrap;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+/* ---------- RIGHT PANEL ---------- */
+.right{
+    width:65%;
+    border-left:1px solid #1e293b;
+    padding-left:20px;
+}
+
+/* ---------- QUESTION ---------- */
+.question{
+    background:#020617;
+    border-left:5px solid #3b82f6;
+    padding:14px;
+    border-radius:10px;
+    margin-bottom:14px;
+}
+
+/* ---------- ALGORITHM ---------- */
+.algorithm{
+    background:#020617;
+    border-left:5px solid #22c55e;
+    padding:14px;
+    border-radius:10px;
+    margin-bottom:14px;
+}
+
+.algorithm h4{
+    margin:0 0 8px;
+    color:#22c55e;
+}
+
+.algorithm ol{
+    margin:0;
+    padding-left:20px;
+    color:#cbd5f5;
+}
+
+/* ---------- CODE ---------- */
+.code-wrapper{
+    position:relative;
+    margin-bottom:25px;
+}
+
+.copy-btn{
+    position:absolute;
+    top:10px;
+    right:10px;
+    background:#1e293b;
+    color:#93c5fd;
+    border:1px solid #334155;
+    padding:6px 10px;
+    border-radius:6px;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.copy-btn:hover{
+    background:#2563eb;
+    color:white;
+}
+
+pre{
+    background:#020617;
+    color:#22c55e;
+    padding:45px 18px 18px;
+    border-radius:12px;
+    border:1px solid #1e293b;
+    overflow-x:auto;
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+    text-align:center;
+    padding:12px;
+    border-top:1px solid #1e293b;
+    color:#94a3b8;
+    font-size:14px;
+}
+
+/* ---------- MOBILE RESPONSIVE ---------- */
+@media(max-width:900px){
+    main{
+        flex-direction:column;
+    }
+
+    .left,.right{
+        width:100%;
+        padding:0;
+        border:none;
+    }
+
+    .right{
+        padding-top:10px;
+    }
+
+    .section{
+        padding:14px;
+    }
+
+    .btn{
+        padding:10px 18px;
+        font-size:14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <h1>CodeGarage – C++ Programs</h1>
+</header>
+
+<main>
+
+<!-- LEFT PANEL -->
+<div class="left">
+    <input type="text" id="search" placeholder="Search programs...">
+
+    <div class="section">
+        <span>1. Pattern & Swap using Reference</span>
+        <button class="btn" onclick="openProgram()">Open</button>
+    </div>
+    <div class="section">
+    <span>2. Class, Constructors & Destructors</span>
+    <button class="btn" onclick="openProgram2()">Open</button>
+</div>
+<div class="section">
+    <span>3. Inheritance & Constructor–Destructor Order</span>
+    <button class="btn" onclick="openProgram3()">Open</button>
+</div>
+<div class="section">
+    <span>4. Pointers, Overloading & Overriding</span>
+    <button class="btn" onclick="openProgram4()">Open</button>
+</div>
+<div class="section">
+    <span>5. Friend, Inline, Virtual & Static Functions</span>
+    <button class="btn" onclick="openProgram5()">Open</button>
+</div>
+<div class="section">
+    <span>6. Pass & Return Objects | Array of Objects</span>
+    <button class="btn" onclick="openProgram6()">Open</button>
+</div>
+<div class="section">
+    <span>7. Exception Handling in C++</span>
+    <button class="btn" onclick="openProgram7()">Open</button>
+</div>
+<div class="section">
+    <span>8. User Defined Exceptions</span>
+    <button class="btn" onclick="openProgram8()">Open</button>
+</div>
+<div class="section">
+    <span>9. Function Templates (Generic Programming)</span>
+    <button class="btn" onclick="openProgram9()">Open</button>
+</div>
+<div class="section">
+    <span>10. Matrix ADT using Class</span>
+    <button class="btn" onclick="openProgram10()">Open</button>
+</div>
+<div class="section">
+    <span>11. Stack Operations using STL</span>
+    <button class="btn" onclick="openProgram11()">Open</button>
+</div>
+<div class="section">
+    <span>12. Queue Operations using STL</span>
+    <button class="btn" onclick="openProgram12()">Open</button>
+</div>
+<div class="section">
+    <span>13. Circular Queue using STL</span>
+    <button class="btn" onclick="openProgram13()">Open</button>
+</div>
+
+<div class="section">
+    <span>14. Infix to Postfix using Stack (STL)</span>
+    <button class="btn" onclick="openProgram14()">Open</button>
+</div>
+<div class="section">
+    <span>15. Singly Linked List using forward_list (STL)</span>
+    <button class="btn" onclick="openProgram15()">Open</button>
+</div>
+<div class="section">
+    <span>16. Binary Search Tree (BST) Traversal</span>
+    <button class="btn" onclick="openProgram16()">Open</button>
+</div>
+
+
+
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="right" id="viewer">
+    <p style="color:#94a3b8">Select a program to view details</p>
+</div>
+
+</main>
+
+<footer>
+    <p>&copy; <span id="year"></span> CodeGarage</p>
+</footer>
+
+</div>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+function openProgram16(){
+document.getElementById("viewer").innerHTML = `
+
+<div class="question">
+<h3>16. Binary Search Tree (BST)</h3>
+<p>
+A Binary Search Tree (BST) is a binary tree in which each node follows:
+<br>• Left subtree contains values less than the node.
+<br>• Right subtree contains values greater than the node.
+<br>• Both subtrees are also BSTs.
+</p>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm </h4>
+<ol>
+<li>Create a node structure containing data, left pointer and right pointer.</li>
+<li>Initialize the root of the BST as NULL.</li>
+<li>Insert elements into the BST such that BST property is maintained.</li>
+<li>If value is less than current node, insert into left subtree.</li>
+<li>If value is greater than current node, insert into right subtree.</li>
+<li>Traverse the BST using In-order traversal (Left → Root → Right).</li>
+<li>Display the traversal output.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+// Node structure
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val){
+        data = val;
+        left = right = nullptr;
+    }
+};
+
+// Binary Search Tree class
+class BST {
+public:
+    Node* root;
+
+    BST(){
+        root = nullptr;
+    }
+
+    // Insert node
+    Node* insert(Node* node, int val){
+        if(node == nullptr){
+            return new Node(val);
+        }
+        if(val &lt; node-&gt;data){
+            node-&gt;left = insert(node-&gt;left, val);
+        } else {
+            node-&gt;right = insert(node-&gt;right, val);
+        }
+        return node;
+    }
+
+    void insert(int val){
+        root = insert(root, val);
+    }
+
+    // In-order traversal
+    void inorder(Node* node){
+        if(node != nullptr){
+            inorder(node-&gt;left);
+            cout &lt;&lt; node-&gt;data &lt;&lt; " ";
+            inorder(node-&gt;right);
+        }
+    }
+
+    void inorder(){
+        inorder(root);
+        cout &lt;&lt; endl;
+    }
+};
+
+int main(){
+    BST tree;
+
+    tree.insert(50);
+    tree.insert(30);
+    tree.insert(70);
+    tree.insert(20);
+    tree.insert(40);
+    tree.insert(60);
+    tree.insert(80);
+
+    cout &lt;&lt; "In-order Traversal: ";
+    tree.inorder();
+
+    return 0;
+}
+</pre>
+</div>
+`;
+}
+
+function openProgram15(){
+document.getElementById("viewer").innerHTML = `
+
+<div class="question">
+<h3>15. Singly Linked List using STL (forward_list)</h3>
+<p>
+Program to perform all operations of a singly linked list using
+<b>std::forward_list</b> from STL.
+</p>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm (with Theory)</h4>
+<ol>
+<li>A singly linked list stores data with a pointer to the next node.</li>
+<li>STL provides <b>std::forward_list</b> for efficient singly linked list implementation.</li>
+<li>Initialize the list using <b>forward_list&lt;int&gt;</b>.</li>
+<li>Insert elements using <b>push_front()</b> and <b>insert_after()</b>.</li>
+<li>Delete elements using <b>remove()</b>.</li>
+<li>Traverse the list using range-based for loop.</li>
+<li>Search an element by traversing the list.</li>
+<li>Display the list contents.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;forward_list&gt;
+using namespace std;
+
+class LinkedList {
+private:
+    forward_list&lt;int&gt; flist;   // forward_list from STL
+
+public:
+    // Insert at front
+    void insertFront(int value){
+        flist.push_front(value);
+    }
+
+    // Insert after a given element
+    void insertAfter(int key, int value){
+        auto it = flist.begin();
+        while(it != flist.end()){
+            if(*it == key){
+                flist.insert_after(it, value);
+                return;
+            }
+            ++it;
+        }
+        cout &lt;&lt; "Element " &lt;&lt; key &lt;&lt; " not found!" &lt;&lt; endl;
+    }
+
+    // Delete an element
+    void deleteElement(int value){
+        flist.remove(value);
+    }
+
+    // Search for an element
+    bool search(int value){
+        for(int item : flist){
+            if(item == value)
+                return true;
+        }
+        return false;
+    }
+
+    // Display the list
+    void display(){
+        for(int item : flist){
+            cout &lt;&lt; item &lt;&lt; " -> ";
+        }
+        cout &lt;&lt; "NULL" &lt;&lt; endl;
+    }
+};
+
+int main(){
+    LinkedList list;
+
+    // Insert elements
+    list.insertFront(10);
+    list.insertFront(20);
+    list.insertFront(30);
+    list.display();
+
+    // Insert after a node
+    list.insertAfter(20, 25);
+    list.display();
+
+    // Delete an element
+    list.deleteElement(10);
+    list.display();
+
+    // Search operation
+    if(list.search(25)){
+        cout &lt;&lt; "Element found in the list." &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; "Element not found." &lt;&lt; endl;
+    }
+
+    return 0;
+}
+</pre>
+</div>
+`;
+}
+
+function openProgram14(){
+document.getElementById("viewer").innerHTML = `
+
+<div class="question">
+<h3>14. Infix to Postfix Conversion using Stack</h3>
+<p>
+Program to convert an infix expression to a postfix expression using
+stack from the Standard Template Library (STL).
+</p>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm </h4>
+<ol>
+<li>Infix notation places operators between operands (A + B).</li>
+<li>Postfix notation places operators after operands (A B +).</li>
+<li>Create an empty stack to store operators.</li>
+<li>If the character is an operand, append it to postfix expression.</li>
+<li>If the character is '(', push it onto the stack.</li>
+<li>If the character is ')', pop from stack to postfix until '(' is found.</li>
+<li>If the character is an operator, pop operators of higher or equal precedence.</li>
+<li>Push the current operator onto the stack.</li>
+<li>After scanning the expression, pop all remaining operators.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;cctype&gt;
+using namespace std;
+
+// Function to get precedence of operators
+int precedence(char op){
+    if(op == '+' || op == '-')
+        return 1;
+    if(op == '*' || op == '/')
+        return 2;
+    return 0;
+}
+
+// Function to convert infix to postfix
+string infixToPostfix(string infix){
+    stack&lt;char&gt; s;
+    string postfix = "";
+
+    for(char ch : infix){
+        if(isalnum(ch)){
+            postfix += ch; // operand
+        }
+        else if(ch == '('){
+            s.push(ch);
+        }
+        else if(ch == ')'){
+            while(!s.empty() && s.top() != '('){
+                postfix += s.top();
+                s.pop();
+            }
+            s.pop(); // remove '('
+        }
+        else{
+            while(!s.empty() && precedence(s.top()) >= precedence(ch)){
+                postfix += s.top();
+                s.pop();
+            }
+            s.push(ch);
+        }
+    }
+
+    while(!s.empty()){
+        postfix += s.top();
+        s.pop();
+    }
+
+    return postfix;
+}
+
+int main(){
+    string infix;
+    cout &lt;&lt; "Enter an infix expression: ";
+    cin &gt;&gt; infix;
+
+    string postfix = infixToPostfix(infix);
+    cout &lt;&lt; "Postfix expression: " &lt;&lt; postfix &lt;&lt; endl;
+
+    return 0;
+}
+</pre>
+</div>
+`;
+}
+
+function openProgram13(){
+document.getElementById("viewer").innerHTML = `
+
+<div class="question">
+<h3>13. Circular Queue using STL</h3>
+<p>
+Program to implement a Circular Queue using STL <b>deque</b> and demonstrate
+enqueue, dequeue, front, rear, isEmpty and isFull operations.
+</p>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm (with Theory)</h4>
+<ol>
+<li>A circular queue follows FIFO and reuses free space efficiently.</li>
+<li>STL <b>deque</b> supports insertion and deletion from both ends.</li>
+<li>Limit the size of deque to simulate circular queue behavior.</li>
+<li>Use <b>push_back()</b> for enqueue operation.</li>
+<li>Use <b>pop_front()</b> for dequeue operation.</li>
+<li>Use <b>front()</b> and <b>back()</b> to access front and rear elements.</li>
+<li>Check <b>empty()</b> and size to implement isEmpty and isFull.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;deque&gt;
+using namespace std;
+
+class CircularQueue {
+private:
+    deque&lt;int&gt; dq;
+    int maxSize;
+
+public:
+    // Constructor
+    CircularQueue(int size){
+        maxSize = size;
+    }
+
+    // Enqueue operation
+    void enqueue(int value){
+        if(dq.size() == maxSize){
+            cout &lt;&lt; "Queue is full! Cannot enqueue " &lt;&lt; value &lt;&lt; endl;
+            return;
+        }
+        dq.push_back(value);
+    }
+
+    // Dequeue operation
+    void dequeue(){
+        if(dq.empty()){
+            cout &lt;&lt; "Queue is empty! Cannot dequeue." &lt;&lt; endl;
+            return;
+        }
+        dq.pop_front();
+    }
+
+    // Get front element
+    int front(){
+        if(dq.empty()){
+            cout &lt;&lt; "Queue is empty!" &lt;&lt; endl;
+            return -1;
+        }
+        return dq.front();
+    }
+
+    // Get rear element
+    int rear(){
+        if(dq.empty()){
+            cout &lt;&lt; "Queue is empty!" &lt;&lt; endl;
+            return -1;
+        }
+        return dq.back();
+    }
+
+    // Check if empty
+    bool isEmpty(){
+        return dq.empty();
+    }
+
+    // Check if full
+    bool isFull(){
+        return dq.size() == maxSize;
+    }
+
+    // Display queue
+    void display(){
+        if(dq.empty()){
+            cout &lt;&lt; "Queue is empty!" &lt;&lt; endl;
+            return;
+        }
+        cout &lt;&lt; "Queue: ";
+        for(int item : dq){
+            cout &lt;&lt; item &lt;&lt; " ";
+        }
+        cout &lt;&lt; endl;
+    }
+};
+
+int main(){
+    CircularQueue cq(5);
+
+    cq.enqueue(10);
+    cq.enqueue(20);
+    cq.enqueue(30);
+    cq.enqueue(40);
+    cq.enqueue(50);
+
+    cq.display();
+    cout &lt;&lt; "Front: " &lt;&lt; cq.front()
+         &lt;&lt; ", Rear: " &lt;&lt; cq.rear() &lt;&lt; endl;
+
+    cq.dequeue();
+    cq.dequeue();
+    cq.display();
+
+    cq.enqueue(60);
+    cq.enqueue(70);
+    cq.display();
+
+    cout &lt;&lt; "Is Full? " &lt;&lt; (cq.isFull() ? "Yes" : "No") &lt;&lt; endl;
+    cout &lt;&lt; "Is Empty? " &lt;&lt; (cq.isEmpty() ? "Yes" : "No") &lt;&lt; endl;
+
+    return 0;
+}
+</pre>
+</div>
+`;
+}
+
+function openProgram12(){
+document.getElementById("viewer").innerHTML = `
+
+<div class="question">
+<h3>12. Queue Operations using STL</h3>
+<p>
+Program to implement a queue class using STL and demonstrate
+enqueue, dequeue, front, empty and size operations.
+</p>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm (with Theory)</h4>
+<ol>
+<li>A queue follows FIFO (First In First Out) principle.</li>
+<li>Create a queue using <b>std::queue</b> container adaptor.</li>
+<li>Use <b>push()</b> to insert elements at the rear of the queue.</li>
+<li>Use <b>pop()</b> to remove elements from the front.</li>
+<li>Use <b>front()</b> to access the front element.</li>
+<li>Use <b>empty()</b> to check whether the queue is empty.</li>
+<li>Perform queue operations and display the output.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+class Queue {
+private:
+    queue&lt;int&gt; q;
+
+public:
+    // Enqueue operation
+    void enqueue(int value) {
+        q.push(value);
+        cout &lt;&lt; value &lt;&lt; " enqueued to queue." &lt;&lt; endl;
+    }
+
+    // Dequeue operation
+    void dequeue() {
+        if(!q.empty()){
+            cout &lt;&lt; q.front() &lt;&lt; " dequeued from queue." &lt;&lt; endl;
+            q.pop();
+        } else {
+            cout &lt;&lt; "Queue is empty. Cannot dequeue." &lt;&lt; endl;
+        }
+    }
+
+    // Display front element
+    void front() {
+        if(!q.empty()){
+            cout &lt;&lt; "Front element: " &lt;&lt; q.front() &lt;&lt; endl;
+        } else {
+            cout &lt;&lt; "Queue is empty." &lt;&lt; endl;
+        }
+    }
+
+    // Check if queue is empty
+    bool isEmpty() {
+        return q.empty();
+    }
+};
+
+int main() {
+    Queue myQueue;
+
+    myQueue.enqueue(10);
+    myQueue.enqueue(20);
+    myQueue.enqueue(30);
+
+    myQueue.front();
+    myQueue.dequeue();
+    myQueue.front();
+    myQueue.dequeue();
+    myQueue.dequeue();
+    myQueue.dequeue();
+
+    return 0;
+}
+</pre>
+</div>
+`;
+}
+
+function openProgram10(){
+document.getElementById("viewer").innerHTML = `
+
+<div class="question">
+<h3>10. Matrix ADT using Class</h3>
+<p>
+Program to implement Matrix ADT using a class and perform
+addition, subtraction and multiplication of matrices.
+</p>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm (with Theory)</h4>
+<ol>
+<li>An Abstract Data Type (ADT) defines data and operations on that data.</li>
+<li>Create a Matrix class with rows, columns and matrix elements.</li>
+<li>Use operator overloading for matrix addition, subtraction and multiplication.</li>
+<li>Accept matrix elements from the user.</li>
+<li>Perform required matrix operations.</li>
+<li>Display the resulting matrices.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+class Matrix {
+private:
+    vector&lt;vector&lt;int&gt;&gt; mat;
+    int rows, cols;
+
+public:
+    Matrix(int r, int c) : rows(r), cols(c) {
+        mat.resize(r, vector&lt;int&gt;(c, 0));
+    }
+
+    void inputMatrix() {
+        for(int i = 0; i &lt; rows; i++){
+            for(int j = 0; j &lt; cols; j++){
+                cin &gt;&gt; mat[i][j];
+            }
+        }
+    }
+
+    void displayMatrix() const {
+        for(const auto &row : mat){
+            for(int val : row){
+                cout &lt;&lt; val &lt;&lt; " ";
+            }
+            cout &lt;&lt; endl;
+        }
+    }
+
+    Matrix operator+(const Matrix &other) const {
+        Matrix result(rows, cols);
+        for(int i = 0; i &lt; rows; i++){
+            for(int j = 0; j &lt; cols; j++){
+                result.mat[i][j] = mat[i][j] + other.mat[i][j];
+            }
+        }
+        return result;
+    }
+
+    Matrix operator-(const Matrix &other) const {
+        Matrix result(rows, cols);
+        for(int i = 0; i &lt; rows; i++){
+            for(int j = 0; j &lt; cols; j++){
+                result.mat[i][j] = mat[i][j] - other.mat[i][j];
+            }
+        }
+        return result;
+    }
+
+    Matrix operator*(const Matrix &other) const {
+        Matrix result(rows, other.cols);
+        for(int i = 0; i &lt; rows; i++){
+            for(int j = 0; j &lt; other.cols; j++){
+                result.mat[i][j] = 0;
+                for(int k = 0; k &lt; cols; k++){
+                    result.mat[i][j] += mat[i][k] * other.mat[k][j];
+                }
+            }
+        }
+        return result;
+    }
+};
+
+int main() {
+    int r, c;
+    cout &lt;&lt; "Enter number of rows and columns: ";
+    cin &gt;&gt; r &gt;&gt; c;
+
+    Matrix mat1(r, c), mat2(r, c);
+
+    cout &lt;&lt; "Enter elements of first matrix:" &lt;&lt; endl;
+    mat1.inputMatrix();
+
+    cout &lt;&lt; "Enter elements of second matrix:" &lt;&lt; endl;
+    mat2.inputMatrix();
+
+    Matrix sum = mat1 + mat2;
+    Matrix diff = mat1 - mat2;
+    Matrix prod = mat1 * mat2;
+
+    cout &lt;&lt; "Sum of matrices:" &lt;&lt; endl;
+    sum.displayMatrix();
+
+    cout &lt;&lt; "Difference of matrices:" &lt;&lt; endl;
+    diff.displayMatrix();
+
+    cout &lt;&lt; "Product of matrices:" &lt;&lt; endl;
+    prod.displayMatrix();
+
+    return 0;
+}
+</pre>
+</div>
+`;
+}
+function openProgram11(){
+document.getElementById("viewer").innerHTML = `
+
+<div class="question">
+<h3>11. Stack Operations using STL</h3>
+<p>
+Program to accept two stacks from the user and perform operations using
+the <b>stack</b> class available in the Standard Template Library (STL).
+</p>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm (with Theory)</h4>
+<ol>
+<li>The STL stack is a container adapter that follows LIFO (Last In First Out).</li>
+<li>Create two stacks using <b>stack&lt;int&gt;</b>.</li>
+<li>Accept elements from the user and push them into each stack.</li>
+<li>Use <b>top()</b> to view the top element.</li>
+<li>Use <b>pop()</b> to remove the top element.</li>
+<li>Use <b>empty()</b> to check whether the stack is empty.</li>
+<li>Display the results of stack operations.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;stack&gt;
+using namespace std;
+
+int main()
+{
+    stack&lt;int&gt; stack1, stack2;
+    int n, value;
+
+    // Input for stack1
+    cout &lt;&lt; "Enter number of elements for stack1: ";
+    cin &gt;&gt; n;
+    cout &lt;&lt; "Enter elements for stack1: ";
+    for(int i = 0; i &lt; n; i++){
+        cin &gt;&gt; value;
+        stack1.push(value);
+    }
+
+    // Input for stack2
+    cout &lt;&lt; "Enter number of elements for stack2: ";
+    cin &gt;&gt; n;
+    cout &lt;&lt; "Enter elements for stack2: ";
+    for(int i = 0; i &lt; n; i++){
+        cin &gt;&gt; value;
+        stack2.push(value);
+    }
+
+    // Stack operations
+    cout &lt;&lt; "Top of stack1: " &lt;&lt; stack1.top() &lt;&lt; endl;
+    stack1.pop();
+    cout &lt;&lt; "Top of stack1 after pop: "
+         &lt;&lt; (stack1.empty() ? -1 : stack1.top()) &lt;&lt; endl;
+
+    cout &lt;&lt; "Top of stack2: " &lt;&lt; stack2.top() &lt;&lt; endl;
+    stack2.pop();
+    cout &lt;&lt; "Top of stack2 after pop: "
+         &lt;&lt; (stack2.empty() ? -1 : stack2.top()) &lt;&lt; endl;
+
+    return 0;
+}
+</pre>
+</div>
+`;
+}
+
+function openProgram7(){
+document.getElementById("viewer").innerHTML = `
+
+<div class="question">
+<h3>7. a) Exception Handling using try, throw and catch</h3>
+<p>Program to demonstrate handling exceptions using try, throw and catch blocks.</p>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm (with Theory)</h4>
+<ol>
+<li>Exception handling is used to handle runtime errors.</li>
+<li>The <b>try</b> block contains code that may cause an error.</li>
+<li>The <b>throw</b> keyword is used to generate an exception.</li>
+<li>The <b>catch</b> block handles the thrown exception.</li>
+<li>If no exception occurs, catch block is skipped.</li>
+<li>Execute the program and observe the output.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+// Function to perform division and handle exceptions
+void divideNumbers(int a, int b)
+{
+    try
+    {
+        if (b == 0)
+        {
+            throw "Error: Division by zero is not allowed!";
+        }
+        cout &lt;&lt; "Result: " &lt;&lt; (a / b) &lt;&lt; endl;
+    }
+    catch (const char* msg)
+    {
+        cout &lt;&lt; msg &lt;&lt; endl;
+    }
+    catch (...)
+    {
+        cout &lt;&lt; "An unexpected error occurred!" &lt;&lt; endl;
+    }
+}
+
+int main()
+{
+    cout &lt;&lt; "Test Case 1: Valid Division" &lt;&lt; endl;
+    divideNumbers(10, 2);
+
+    cout &lt;&lt; "\\nTest Case 2: Division by Zero" &lt;&lt; endl;
+    divideNumbers(10, 0);
+
+    return 0;
+}
+</pre>
+</div>
+
+<div class="question">
+<h3>7. b) Catching All Types of Exceptions</h3>
+<p>Program to demonstrate catching different and all exceptions.</p>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm (with Theory)</h4>
+<ol>
+<li>Define a function that throws different types of exceptions.</li>
+<li>Use multiple <b>catch</b> blocks for specific exceptions.</li>
+<li>Use <b>catch(...)</b> to handle unknown exceptions.</li>
+<li>Execute program and observe exception handling.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;stdexcept&gt;
+using namespace std;
+
+void testExceptions(int type)
+{
+    if (type == 1)
+        throw 42;
+    else if (type == 2)
+        throw 3.14;
+    else if (type == 3)
+        throw "An exception occurred";
+    else
+        throw runtime_error("Standard runtime exception");
+}
+
+int main()
+{
+    for (int i = 1; i &lt;= 4; ++i)
+    {
+        try
+        {
+            testExceptions(i);
+        }
+        catch (int e)
+        {
+            cout &lt;&lt; "Caught an integer exception: " &lt;&lt; e &lt;&lt; endl;
+        }
+        catch (double e)
+        {
+            cout &lt;&lt; "Caught a double exception: " &lt;&lt; e &lt;&lt; endl;
+        }
+        catch (const char* e)
+        {
+            cout &lt;&lt; "Caught a string exception: " &lt;&lt; e &lt;&lt; endl;
+        }
+        catch (const exception& e)
+        {
+            cout &lt;&lt; "Caught a standard exception: " &lt;&lt; e.what() &lt;&lt; endl;
+        }
+        catch (...)
+        {
+            cout &lt;&lt; "Caught an unknown exception" &lt;&lt; endl;
+        }
+    }
+    return 0;
+}
+</pre>
+</div>
+`;
+}
+function openProgram8(){
+document.getElementById("viewer").innerHTML = `
+
+<div class="question">
+<h3>8. User Defined Exceptions</h3>
+<p>Program to demonstrate user-defined exceptions in C++.</p>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm (with Theory)</h4>
+<ol>
+<li>User-defined exceptions are custom exception classes created by the programmer.</li>
+<li>Create a class derived from <b>exception</b> or use a custom class.</li>
+<li>Use <b>throw</b> to raise the user-defined exception.</li>
+<li>Use <b>catch</b> block to handle the exception.</li>
+<li>Display appropriate error message.</li>
+<li>Execute the program and observe the output.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;exception&gt;
+using namespace std;
+
+// User-defined exception class
+class InvalidAgeException : public exception {
+public:
+    const char* what() const noexcept override {
+        return "Invalid Age! Age must be 18 or above.";
+    }
+};
+
+int main() {
+    int age;
+    cout &lt;&lt; "Enter age: ";
+    cin &gt;&gt; age;
+
+    try {
+        if (age &lt; 18) {
+            throw InvalidAgeException(); // throwing user-defined exception
+        }
+        cout &lt;&lt; "Access granted. Age is valid." &lt;&lt; endl;
+    }
+    catch (InvalidAgeException &e) {
+        cout &lt;&lt; "Exception caught: " &lt;&lt; e.what() &lt;&lt; endl;
+    }
+
+    return 0;
+}
+</pre>
+</div>
+`;
+}
+function openProgram9(){
+document.getElementById("viewer").innerHTML = `
+
+<div class="question">
+<h3>9. Generic Template for Addition</h3>
+<p>
+Program to create a generic template for adding two integers and two float
+values using C++ templates.
+</p>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm (with Theory)</h4>
+<ol>
+<li>A template allows writing generic code independent of data types.</li>
+<li>Use the keyword <b>template</b> with <b>typename</b> or <b>class</b>.</li>
+<li>Create a function template that takes parameters of generic type.</li>
+<li>Call the template function with integer values.</li>
+<li>Call the same template function with float values.</li>
+<li>Display the results.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+// Function template
+template &lt;typename T&gt;
+T add(T a, T b)
+{
+    return a + b;
+}
+
+int main()
+{
+    int int1 = 10, int2 = 20;
+    float float1 = 5.5, float2 = 2.5;
+
+    cout &lt;&lt; "Addition of two integers: "
+         &lt;&lt; add(int1, int2) &lt;&lt; endl;
+
+    cout &lt;&lt; "Addition of two floats: "
+         &lt;&lt; add(float1, float2) &lt;&lt; endl;
+
+    return 0;
+}
+</pre>
+</div>
+`;
+}
+
+function openProgram(){
+    document.getElementById("viewer").innerHTML = `
+    <div class="question">
+        <h3>1. a) Pattern Program</h3>
+        <p>Generate the following sequence:</p>
+        <pre style="color:#93c5fd">1
+1 2
+1 2 3
+1 2 3 4</pre>
+    </div>
+
+    <div class="algorithm">
+        <h4>Algorithm</h4>
+        <ol>
+            <li>Start the program.</li>
+            <li>Read value of n.</li>
+            <li>Repeat i from 1 to n.</li>
+            <li>Repeat j from 1 to i and print j.</li>
+            <li>Move to next line.</li>
+            <li>Stop.</li>
+        </ol>
+    </div>
+
+    <div class="code-wrapper">
+        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+    int i,j,n;
+    cout &lt;&lt; "Enter the value: ";
+    cin &gt;&gt; n;
+
+    for(i=1;i&lt;=n;i++){
+        for(j=1;j&lt;=i;j++){
+            cout &lt;&lt; j &lt;&lt; " ";
+        }
+        cout &lt;&lt; endl;
+    }
+    return 0;
+}
+        </pre>
+    </div>
+
+    <div class="question">
+        <h3>1. b) Swap using Reference Variables</h3>
+        <p>Swap two integers and two float numbers using reference variables.</p>
+    </div>
+
+    <div class="algorithm">
+        <h4>Algorithm</h4>
+        <ol>
+            <li>Start.</li>
+            <li>Define swap functions using references.</li>
+            <li>Read integer values and swap them.</li>
+            <li>Read float values and swap them.</li>
+            <li>Display results.</li>
+            <li>Stop.</li>
+        </ol>
+    </div>
+
+    <div class="code-wrapper">
+        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+void swap(int &a,int &b){
+    int temp=a;
+    a=b;
+    b=temp;
+}
+
+void swap(float &x,float &y){
+    float temp=x;
+    x=y;
+    y=temp;
+}
+
+int main(){
+    int a,b;
+    float x,y;
+
+    cin &gt;&gt; a &gt;&gt; b;
+    swap(a,b);
+
+    cin &gt;&gt; x &gt;&gt; y;
+    swap(x,y);
+
+    return 0;
+}
+        </pre>
+    </div>
+    `;
+}
+function openProgram6(){
+document.getElementById("viewer").innerHTML = `
+
+<div class="question">
+<h3>6. a) Passing and Returning Objects</h3>
+<p>Program to demonstrate passing objects to functions and returning objects from functions.</p>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm (with Theory)</h4>
+<ol>
+<li>Create a class with data members.</li>
+<li>Pass an object to a function by value.</li>
+<li>Modify and return an object from the function.</li>
+<li>Pass an object by reference to modify original object.</li>
+<li>Display the results.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+class Complex {
+public:
+    int real, imag;
+
+    Complex(int r = 0, int i = 0){
+        real = r;
+        imag = i;
+    }
+
+    // Pass by value and return object
+    Complex add(Complex c){
+        Complex res;
+        res.real = real + c.real;
+        res.imag = imag + c.imag;
+        return res;
+    }
+
+    // Pass by reference
+    void add_ref(Complex &c){
+        real += c.real;
+        imag += c.imag;
+    }
+
+    void display(){
+        cout &lt;&lt; real &lt;&lt; " + i" &lt;&lt; imag &lt;&lt; endl;
+    }
+};
+
+int main(){
+    Complex c1(10,5), c2(2,4);
+
+    Complex c3 = c1.add(c2); // returning object
+    c3.display();
+
+    c1.add_ref(c2); // passing object by reference
+    c1.display();
+
+    return 0;
+}
+</pre>
+</div>
+
+<div class="question">
+<h3>6. b) Array of Objects</h3>
+<p>Program to create and use an array of objects.</p>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm (with Theory)</h4>
+<ol>
+<li>Define a class.</li>
+<li>Create an array of objects of the class.</li>
+<li>Initialize object data members.</li>
+<li>Access and display object data using loop.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+class Student {
+public:
+    string name;
+    int roll_no;
+
+    void display(){
+        cout &lt;&lt; "Name: " &lt;&lt; name 
+             &lt;&lt; ", Roll No: " &lt;&lt; roll_no &lt;&lt; endl;
+    }
+};
+
+int main(){
+    Student students[3];
+
+    students[0] = {"Alice", 101};
+    students[1] = {"Bob", 102};
+    students[2] = {"Charlie", 103};
+
+    for(int i = 0; i &lt; 3; i++){
+        students[i].display();
+    }
+    return 0;
+}
+</pre>
+</div>
+`;
+}
+
+function openProgram2(){
+    document.getElementById("viewer").innerHTML = `
+    <div class="question">
+        <h3>2. a) Class Declaration & Accessing Members</h3>
+        <p>Illustrate class declarations, definitions and accessing class members.</p>
+    </div>
+
+    <div class="algorithm">
+        <h4>Algorithm</h4>
+        <ol>
+            <li>Start the program.</li>
+            <li>Define a function with default arguments.</li>
+            <li>Call the function with different parameter combinations.</li>
+            <li>Display the output.</li>
+            <li>Stop.</li>
+        </ol>
+    </div>
+
+    <div class="code-wrapper">
+        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+void printDetails(string name, int age = 18, string country = "USA")
+{
+    cout &lt;&lt; "Name: " &lt;&lt; name
+         &lt;&lt; ", Age: " &lt;&lt; age
+         &lt;&lt; ", Country: " &lt;&lt; country &lt;&lt; endl;
+}
+
+int main()
+{
+    printDetails("Alice", 25, "Canada");
+    printDetails("Bob");
+    printDetails("Charlie", 30);
+    return 0;
+}
+        </pre>
+    </div>
+
+    <div class="question">
+        <h3>2. b) Constructors & Destructors</h3>
+        <p>Illustrate default, parameterized and copy constructors.</p>
+    </div>
+
+    <div class="algorithm">
+        <h4>Algorithm</h4>
+        <ol>
+            <li>Start the program.</li>
+            <li>Create a class with data members.</li>
+            <li>Define default constructor.</li>
+            <li>Define parameterized constructor.</li>
+            <li>Define copy constructor.</li>
+            <li>Create objects and display values.</li>
+            <li>Stop.</li>
+        </ol>
+    </div>
+
+    <div class="code-wrapper">
+        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+class Person
+{
+    string name;
+    int age;
+
+public:
+    Person()
+    {
+        name = "";
+        age = 0;
+    }
+
+    Person(string n, int a)
+    {
+        name = n;
+        age = a;
+    }
+
+    Person(const Person &obj)
+    {
+        name = obj.name;
+        age = obj.age;
+    }
+
+    void display()
+    {
+        cout &lt;&lt; "Name: " &lt;&lt; name &lt;&lt; endl;
+        cout &lt;&lt; "Age: " &lt;&lt; age &lt;&lt; endl &lt;&lt; endl;
+    }
+};
+
+int main()
+{
+    Person p1;
+    Person p2("Karthik", 25);
+    Person p3(p2);
+
+    p1.display();
+    p2.display();
+    p3.display();
+
+    return 0;
+}
+        </pre>
+    </div>
+
+    <div class="question">
+        <h3>Additional Constructor Examples</h3>
+    </div>
+
+    <div class="code-wrapper">
+        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        <pre>
+// Default Constructor
+#include &lt;iostream&gt;
+using namespace std;
+
+class Wall {
+    double length;
+public:
+    Wall() : length{5.5} {
+        cout &lt;&lt; "Creating a wall" &lt;&lt; endl;
+        cout &lt;&lt; "Length = " &lt;&lt; length &lt;&lt; endl;
+    }
+};
+
+int main() {
+    Wall wall1;
+    return 0;
+}
+        </pre>
+    </div>
+
+    <div class="code-wrapper">
+        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        <pre>
+// Parameterized Constructor
+#include &lt;iostream&gt;
+using namespace std;
+
+class Wall {
+    double length, height;
+public:
+    Wall(double l, double h) : length{l}, height{h} {}
+    double calculateArea() {
+        return length * height;
+    }
+};
+
+int main() {
+    Wall w1(10.5, 8.6);
+    Wall w2(8.5, 6.3);
+
+    cout &lt;&lt; "Area of Wall 1: " &lt;&lt; w1.calculateArea() &lt;&lt; endl;
+    cout &lt;&lt; "Area of Wall 2: " &lt;&lt; w2.calculateArea() &lt;&lt; endl;
+    return 0;
+}
+        </pre>
+    </div>
+
+    <div class="code-wrapper">
+        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        <pre>
+// Copy Constructor
+#include &lt;iostream&gt;
+using namespace std;
+
+class Wall {
+    double length, height;
+public:
+    Wall(double l, double h) : length{l}, height{h} {}
+    Wall(const Wall &obj) : length{obj.length}, height{obj.height} {}
+
+    double calculateArea() {
+        return length * height;
+    }
+};
+
+int main() {
+    Wall wall1(10.5, 8.6);
+    Wall wall2 = wall1;
+
+    cout &lt;&lt; "Area of Wall 1: " &lt;&lt; wall1.calculateArea() &lt;&lt; endl;
+    cout &lt;&lt; "Area of Wall 2: " &lt;&lt; wall2.calculateArea() &lt;&lt; endl;
+    return 0;
+}
+        </pre>
+    </div>
+    `;
+}
+function openProgram4(){
+document.getElementById("viewer").innerHTML = `
+
+<div class="question">
+<h3>4. a) Pointers with Base and Derived Classes</h3>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm</h4>
+<ol>
+<li>Create base and derived classes.</li>
+<li>Create pointers for base and derived classes.</li>
+<li>Call member functions using pointers.</li>
+<li>Assign derived pointer to base pointer.</li>
+<li>Display results.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+class Base {
+public:
+    void sum(int a, int b) {
+        cout &lt;&lt; "Sum of two numbers: " &lt;&lt; a + b &lt;&lt; endl;
+    }
+};
+
+class Derived : public Base {
+public:
+    void mult(int a, int b) {
+        cout &lt;&lt; "Product of two numbers: " &lt;&lt; a * b &lt;&lt; endl;
+    }
+};
+
+int main() {
+    Base *basePtr = new Base();
+    Derived *derivedPtr = new Derived();
+
+    basePtr-&gt;sum(5,6);
+    derivedPtr-&gt;mult(5,5);
+    derivedPtr-&gt;sum(6,6);
+
+    basePtr = derivedPtr;
+    basePtr-&gt;sum(25,25);
+
+    delete basePtr;
+    delete derivedPtr;
+    return 0;
+}
+</pre>
+</div>
+
+<div class="question">
+<h3>4. b) Function Overloading</h3>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm</h4>
+<ol>
+<li>Create a class with same function name.</li>
+<li>Change parameter types or count.</li>
+<li>Call overloaded functions.</li>
+<li>Display output.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+class Calculator {
+public:
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    double add(double a, double b) {
+        return a + b;
+    }
+
+    string add(const string &a, const string &b) {
+        return a + b;
+    }
+};
+
+int main() {
+    Calculator calc;
+
+    cout &lt;&lt; "Sum of integers: " &lt;&lt; calc.add(5,3) &lt;&lt; endl;
+    cout &lt;&lt; "Sum of doubles: " &lt;&lt; calc.add(5.5,3.2) &lt;&lt; endl;
+    cout &lt;&lt; "Concatenated string: " 
+         &lt;&lt; calc.add("Hello, ", "World!") &lt;&lt; endl;
+
+    return 0;
+}
+</pre>
+</div>
+
+<div class="question">
+<h3>4. b) Operator Overloading</h3>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm</h4>
+<ol>
+<li>Define a class.</li>
+<li>Overload operators using member functions.</li>
+<li>Create objects.</li>
+<li>Perform operations using operators.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+class Complex {
+    double real, imag;
+public:
+    Complex(double r=0,double i=0) : real(r), imag(i) {}
+
+    Complex operator-() {
+        return Complex(-real, -imag);
+    }
+
+    Complex operator+(Complex &c) {
+        return Complex(real + c.real, imag + c.imag);
+    }
+
+    void display() {
+        cout &lt;&lt; real &lt;&lt; " + " &lt;&lt; imag &lt;&lt; "i" &lt;&lt; endl;
+    }
+};
+
+int main() {
+    Complex c1(3,4), c2(1,2);
+
+    Complex c3 = -c1;
+    c3.display();
+
+    Complex c4 = c1 + c2;
+    c4.display();
+
+    return 0;
+}
+</pre>
+</div>
+
+<div class="question">
+<h3>4. b) Function Overriding</h3>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm</h4>
+<ol>
+<li>Create base class function.</li>
+<li>Override function in derived class.</li>
+<li>Call function using derived object.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+class Parent {
+public:
+    void print() {
+        cout &lt;&lt; "Base function" &lt;&lt; endl;
+    }
+};
+
+class Child : public Parent {
+public:
+    void print() {
+        cout &lt;&lt; "Derived function" &lt;&lt; endl;
+    }
+};
+
+int main() {
+    Child obj;
+    obj.print();
+    return 0;
+}
+</pre>
+</div>
+`;
+}
+function openProgram5(){
+document.getElementById("viewer").innerHTML = `
+
+<div class="question">
+<h3>5. a) Friend Function & Inline Function</h3>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm (with Theory)</h4>
+<ol>
+<li>A friend function is a non-member function that can access private members of a class.</li>
+<li>Declare the friend function inside the class using the keyword <b>friend</b>.</li>
+<li>Define the friend function outside the class.</li>
+<li>An inline function is expanded in place during compilation to reduce function call overhead.</li>
+<li>Use the keyword <b>inline</b> for small and frequently used functions.</li>
+<li>Execute the program and display the output.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+// FRIEND FUNCTION
+#include &lt;iostream&gt;
+using namespace std;
+
+class Box {
+private:
+    int length, width, height;
+public:
+    Box(int l, int w, int h) : length(l), width(w), height(h) {}
+    friend int calculateVolume(Box b);
+};
+
+int calculateVolume(Box b){
+    return b.length * b.width * b.height;
+}
+
+int main(){
+    Box myBox(5,4,3);
+    cout &lt;&lt; "Volume of Box: " &lt;&lt; calculateVolume(myBox) &lt;&lt; endl;
+    return 0;
+}
+</pre>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+// INLINE FUNCTION
+#include &lt;iostream&gt;
+using namespace std;
+
+inline int cube(int s){
+    return s * s * s;
+}
+
+int main(){
+    int n;
+    cout &lt;&lt; "Enter a number: ";
+    cin &gt;&gt; n;
+    cout &lt;&lt; "The cube of " &lt;&lt; n &lt;&lt; " is: " &lt;&lt; cube(n) &lt;&lt; endl;
+    return 0;
+}
+</pre>
+</div>
+
+<div class="question">
+<h3>5. b) Virtual Function & Static Function</h3>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm (with Theory)</h4>
+<ol>
+<li>A virtual function enables runtime polymorphism.</li>
+<li>Declare the function as <b>virtual</b> in the base class.</li>
+<li>Override the function in the derived class.</li>
+<li>Use base class pointer to call derived class method.</li>
+<li>A static function belongs to the class, not to objects.</li>
+<li>Static functions are accessed using the class name.</li>
+<li>Execute the program and observe the output.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+// VIRTUAL FUNCTION
+#include &lt;iostream&gt;
+using namespace std;
+
+class Base {
+public:
+    virtual void display(){
+        cout &lt;&lt; "Display function of Base class" &lt;&lt; endl;
+    }
+    virtual ~Base(){
+        cout &lt;&lt; "Base class destructor called" &lt;&lt; endl;
+    }
+};
+
+class Derived : public Base {
+public:
+    void display() override{
+        cout &lt;&lt; "Display function of Derived class" &lt;&lt; endl;
+    }
+    ~Derived(){
+        cout &lt;&lt; "Derived class destructor called" &lt;&lt; endl;
+    }
+};
+
+int main(){
+    Base* basePtr;
+    Derived obj;
+    basePtr = &obj;
+    basePtr-&gt;display();
+    return 0;
+}
+</pre>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+// STATIC FUNCTION
+#include &lt;iostream&gt;
+using namespace std;
+
+class Calculator {
+public:
+    static int add(int a, int b){
+        return a + b;
+    }
+    static int multiply(int a, int b){
+        return a * b;
+    }
+};
+
+int main(){
+    int sum = Calculator::add(10,20);
+    int product = Calculator::multiply(5,6);
+
+    cout &lt;&lt; "Sum of 10 and 20 is: " &lt;&lt; sum &lt;&lt; endl;
+    cout &lt;&lt; "Product of 5 and 6 is: " &lt;&lt; product &lt;&lt; endl;
+    return 0;
+}
+</pre>
+</div>
+`;
+}
+
+
+function openProgram3(){
+document.getElementById("viewer").innerHTML = `
+
+<div class="question">
+<h3>3. a) Types of Inheritance</h3>
+<p>Illustrate Single, Multiple, Multilevel and Hierarchical inheritance.</p>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm</h4>
+<ol>
+<li>Define base and derived classes.</li>
+<li>Implement required inheritance type.</li>
+<li>Access base class members using derived class objects.</li>
+<li>Display results.</li>
+<li>Stop.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+// SINGLE INHERITANCE
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+class Student {
+public:
+    string name;
+    long long rollno;
+
+    Student(string nam, long long no) : name(nam), rollno(no) {}
+
+    void display(){
+        cout &lt;&lt; "Name: " &lt;&lt; name &lt;&lt; endl;
+        cout &lt;&lt; "Roll No: " &lt;&lt; rollno &lt;&lt; endl;
+    }
+};
+
+class Report : public Student {
+public:
+    Report(string name, long long no) : Student(name, no) {}
+};
+
+int main(){
+    Report r("Kalyan", 322103382038);
+    r.display();
+    return 0;
+}
+</pre>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+// MULTIPLE INHERITANCE
+#include &lt;iostream&gt;
+using namespace std;
+
+class A {
+protected:
+    int a;
+public:
+    void get_a(int n){ a = n; }
+};
+
+class B {
+protected:
+    int b;
+public:
+    void get_b(int n){ b = n; }
+};
+
+class C : public A, public B {
+public:
+    void display(){
+        cout &lt;&lt; "a = " &lt;&lt; a &lt;&lt; endl;
+        cout &lt;&lt; "b = " &lt;&lt; b &lt;&lt; endl;
+        cout &lt;&lt; "Sum = " &lt;&lt; a + b &lt;&lt; endl;
+    }
+};
+
+int main(){
+    C c;
+    c.get_a(10);
+    c.get_b(20);
+    c.display();
+    return 0;
+}
+</pre>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+// MULTILEVEL INHERITANCE
+#include &lt;iostream&gt;
+using namespace std;
+
+class Person {
+protected:
+    string name;
+    int age;
+public:
+    Person(string n, int a) : name(n), age(a) {}
+};
+
+class Employee : public Person {
+protected:
+    string position;
+public:
+    Employee(string n,int a,string p) : Person(n,a), position(p) {}
+};
+
+class Manager : public Employee {
+    int teamSize;
+public:
+    Manager(string n,int a,string p,int t)
+    : Employee(n,a,p), teamSize(t) {}
+
+    void show(){
+        cout &lt;&lt; name &lt;&lt; " " &lt;&lt; position &lt;&lt; " Team: " &lt;&lt; teamSize &lt;&lt; endl;
+    }
+};
+
+int main(){
+    Manager m("John",40,"Manager",10);
+    m.show();
+    return 0;
+}
+</pre>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+// HIERARCHICAL INHERITANCE
+#include &lt;iostream&gt;
+using namespace std;
+
+class Shape {
+protected:
+    int sides;
+public:
+    Shape(int s):sides(s){}
+};
+
+class Triangle : public Shape {
+public:
+    Triangle():Shape(3){}
+};
+
+class Square : public Shape {
+public:
+    Square():Shape(4){}
+};
+
+int main(){
+    Triangle t;
+    Square s;
+    cout &lt;&lt; "Triangle sides: 3" &lt;&lt; endl;
+    cout &lt;&lt; "Square sides: 4" &lt;&lt; endl;
+    return 0;
+}
+</pre>
+</div>
+
+<div class="question">
+<h3>3. b) Constructor & Destructor Order</h3>
+</div>
+
+<div class="algorithm">
+<h4>Algorithm</h4>
+<ol>
+<li>Create multiple objects.</li>
+<li>Observe constructor calls.</li>
+<li>Exit program.</li>
+<li>Observe destructor calls in reverse order.</li>
+</ol>
+</div>
+
+<div class="code-wrapper">
+<button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+class Myclass {
+public:
+    int id;
+    Myclass(int id):id(id){
+        cout &lt;&lt; "Constructor called for object " &lt;&lt; id &lt;&lt; endl;
+    }
+    ~Myclass(){
+        cout &lt;&lt; "Destructor called for object " &lt;&lt; id &lt;&lt; endl;
+    }
+};
+
+int main(){
+    Myclass obj1(1);
+    Myclass obj2(2);
+    Myclass obj3(3);
+    cout &lt;&lt; "Objects created. Exiting main." &lt;&lt; endl;
+    return 0;
+}
+</pre>
+</div>
+`;
+}
+
+function copyCode(btn){
+    const code = btn.nextElementSibling.innerText;
+    navigator.clipboard.writeText(code);
+    alert("Code copied successfully!");
+}
+</script>
+
+</body>
+</html>
