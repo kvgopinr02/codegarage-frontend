@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Programming Tutorials | YouTube</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#020617;
+  color:white;
+}
+
+/* ---------- HEADER ---------- */
+h1{
+  text-align:center;
+  margin:20px 0 5px;
+  color:#60a5fa;
+  animation:fadeDown 1s ease;
+}
+
+.telugu-title{
+  text-align:center;
+  color:#22c55e;
+  margin-bottom:20px;
+  animation:fadeDown 1.3s ease;
+}
+
+@keyframes fadeDown{
+  from{opacity:0; transform:translateY(-20px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+/* ---------- CONTAINER ---------- */
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
+}
+.footer{
+  margin-top:50px;
+  padding:25px 20px;
+  background:#020617;
+  border-top:1px solid #1e293b;
+  text-align:center;
+}
+
+.footer-home{
+  display:inline-block;
+  margin-bottom:12px;
+  color:#22c55e;
+  text-decoration:none;
+  font-weight:600;
+  padding:6px 14px;
+  border-radius:6px;
+  transition:0.3s;
+}
+/* Program buttons / links effects */
+.program-btn{
+  display:block;
+  margin:10px 0;
+  padding:12px 16px;
+  border-radius:10px;
+  background:#020617;
+  color:#93c5fd;
+  text-decoration:none;
+  font-weight:500;
+  border:1px solid #1e293b;
+  transition:all 0.35s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+/* hover glow + slide */
+.program-btn:hover{
+  color:#ffffff;
+  background:#022c22;
+  border-color:#22c55e;
+  transform:translateX(8px);
+  box-shadow:0 0 15px rgba(34,197,94,0.7);
+}
+
+/* subtle shine effect */
+.program-btn::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(34,197,94,0.25),
+    transparent
+  );
+  transition:0.5s;
+}
+
+.program-btn:hover::before{
+  left:100%;
+}
+
+/* click effect */
+.program-btn:active{
+  transform:scale(0.97);
+  box-shadow:0 0 8px rgba(34,197,94,0.9);
+}
+
+
+.footer-home:hover{
+  background:#1e293b;
+  color:#ffffff;
+}
+
+.footer p{
+  margin:4px 0;
+  font-size:13px;
+  color:#94a3b8;
+}
+
+
+/* ---------- BUTTONS ---------- */
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:15px;
+  animation:fadeUp 1.2s ease;
+}
+
+button{
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:#1e293b;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#2563eb;
+  transform:translateY(-4px) scale(1.05);
+}
+
+/* ---------- LIST ---------- */
+.list{
+  margin-top:30px;
+  background:#020617;
+  border:1px solid #1e293b;
+  border-radius:14px;
+  padding:22px;
+  display:none;
+  animation:fadeUp 0.6s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(20px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+.list h2{
+  margin-top:0;
+  color:#facc15;
+}
+
+.rank{
+  font-size:13px;
+  color:#94a3b8;
+  margin-bottom:10px;
+}
+
+.list a{
+  display:block;
+  color:#93c5fd;
+  text-decoration:none;
+  margin:10px 0;
+  padding:10px;
+  border-radius:8px;
+  transition:0.3s;
+}
+
+.list a:hover{
+  background:#1e293b;
+  padding-left:18px;
+}
+body{
+  margin:0;
+  padding:20px;
+  font-family:Arial, sans-serif;
+  background:#020617;
+  color:#e5e7eb;
+  line-height:1.6;
+}
+
+h1{
+  text-align:center;
+  color:#22c55e;
+  margin-bottom:15px;
+}
+
+h2{
+  color:#38bdf8;
+  margin-top:30px;
+}
+
+h3{
+  color:#22c55e;
+  margin-top:30px;
+}
+
+.learning-note{
+  background:#022c22;
+  color:#bbf7d0;
+  padding:12px 15px;
+  border-radius:8px;
+  margin-bottom:12px;
+  font-size:14px;
+}
+
+.mobile-note{
+  background:#020617;
+  color:#94a3b8;
+  padding:10px 15px;
+  border-left:4px solid #22c55e;
+  margin-bottom:20px;
+  font-size:14px;
+}
+
+@media (min-width:768px){
+  .mobile-note{
+    display:none;
+  }
+}
+
+a{
+  color:#93c5fd;
+  text-decoration:none;
+  display:block;
+  margin:8px 0;
+  padding:8px 10px;
+  border-radius:6px;
+  transition:0.3s;
+}
+
+a:hover{
+  background:#1e293b;
+  padding-left:16px;
+  color:#ffffff;
+}
+
+hr{
+  border:none;
+  height:1px;
+  background:#1e293b;
+  margin:30px 0;
+}
+
+ul{
+  padding-left:20px;
+  color:#cbd5f5;
+}
+
+li{
+  margin-bottom:8px;
+}
+
+footer{
+  text-align:center;
+  color:#64748b;
+  margin-top:40px;
+  font-size:13px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Programming Languages – YouTube Tutorials</h1>
+<div class="learning-note">
+  📌 Start one course fully. Practice daily.
+</div>
+<div class="mobile-note">
+  📱 Mobile users: Scroll down in YouTube to view playlist.
+</div>
+
+<div class="container">
+
+  <!-- BUTTONS -->
+  <div class="buttons">
+    <button onclick="show('c')">C</button>
+    <button onclick="show('cpp')">C++</button>
+    <button onclick="show('python')">Python</button>
+    <button onclick="show('java')">Java</button>
+    <button onclick="show('dsa')">DSA Python</button>
+    <button onclick="show('web')">Web Dev</button>
+    <button onclick="show('dsac')">DSA C</button>
+    <button onclick="show('dsajava')">DSA JAVA</button>
+    <button onclick="show('sql2')">SQL</button>
+    
+  </div>
+
+  <!-- C -->
+ <div class="list" id="c">
+  <h2>C Language – Top 5 YouTube Channels</h2>
+  <div class="rank">Ranked: Beginner → Advanced</div>
+
+  <!-- 1 -->
+  <a href="https://youtu.be/7Dh73z3icd8?si=c-3Yiks_A_fTMriD" target="_blank">
+    1️⃣ CodeWithHarry – C Language Full Course (Hindi)
+  </a>
+
+  <!-- 2 -->
+  <a href="https://youtu.be/KJgsSFOSQv0?si=8eSN-LVj2laGV_UM" target="_blank">
+    2️⃣ freeCodeCamp – C Programming Full Course (English)
+  </a>
+
+  <!-- 3 -->
+  <a href="https://youtu.be/rLf3jnHxSmU?si=TdD4ekZXtpya44bx" target="_blank">
+    3️⃣ Neso Academy – C Programming Playlist
+  </a>
+
+  <!-- 4 -->
+  <a href="https://youtu.be/EjavYOFoJJ0?si=L-qS5EZgjCxxX5jN" target="_blank">
+    4️⃣ Jenny’s Lectures – C Programming
+  </a>
+
+  <!-- 5 (TELUGU) -->
+  <a href="https://youtu.be/pdPRdhify1Q?si=NeYZx9Bg9rAK7w1A" target="_blank">
+    5️⃣ Swaroop Talks - C Language Full Course in 1 HOUR and Become a ZERO to HERO Programmer!
+  </a>
+</div>
+
+  <!-- C++ -->
+  <div class="list" id="cpp">
+  <h2>C++ Language – Top YouTube Tutorial Links</h2>
+
+  <a href="https://www.youtube.com/playlist?list=PLGLfVvz_LVvQ9S8YSV0iDsuEU8v11yP9M" target="_blank">
+    1️⃣ C++ Tutorial Playlist – Derek Banas
+ (Complete course) 
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=ZzaPdXTrSb8" target="_blank">
+    2️⃣ C++ Tutorial For Beginners – Programming with Mosh (Basics) 
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=vLnPwxZdW4Y" target="_blank">
+    3️⃣ C++ Full Course – MfreeCodeCamp.org (Beginner to Advanced) 
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=e7sAf4SbS_g" target="_blank">
+    4️⃣ Complete C++ Tutorial – College Wallah (Basics + Concepts) 
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=ueT_KIbtvkI" target="_blank">
+    5️⃣ C++ Full Course in Telugu – PythonLife (Telugu) 
+  </a>
+
+</div>
+
+
+  <!-- Python -->
+  <div class="list" id="python">
+  <h2>Python Programming – YouTube Tutorials</h2>
+
+  <a href="https://www.youtube.com/watch?v=rfscVS0vtbw" target="_blank">
+  1️⃣ Python Full Course – freeCodeCamp.org (Beginner to Advanced)
+</a>
+
+<a href="https://www.youtube.com/watch?v=gfDE2a7MKjA" target="_blank">
+  2️⃣ Python Full Course – CodeWithHarry (Hindi)
+</a>
+
+<a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc" target="_blank">
+  3️⃣ Python Tutorial for Beginners – Programming with Mosh
+</a>
+
+<a href="https://youtu.be/QXeEoD0pB3E?si=wtpJLpha8C8LN0dH" target="_blank">
+  4️⃣ Python Tutorials – Telusko (Concept Based)
+</a>
+
+<a href="https://youtu.be/ZkndfcIyxMM?si=hZMbp3WxLVkq2J4t" target="_blank">
+  5️⃣ Python Full Course in Telugu – PythonLife (తెలుగు)
+</a>
+
+</div>
+
+
+
+  <!-- Java -->
+  <div class="list" id="java">
+    <h2>Java (Ranked)</h2>
+    <div class="rank">Beginner → Advanced</div>
+
+    <a href="https://www.youtube.com/watch?v=grEKMHGYyns" target="_blank">
+  1️⃣ Java Full Course – freeCodeCamp.org (Beginner to Advanced)
+</a>
+
+<a href="https://www.youtube.com/watch?v=ntLJmHOJ0ME" target="_blank">
+  2️⃣ Java Full Course – CodeWithHarry (Hindi)
+</a>
+
+<a href="https://www.youtube.com/watch?v=eIrMbAQSU34" target="_blank">
+  3️⃣ Java Tutorial for Beginners – Programming with Mosh
+</a>  
+
+<a href="https://www.youtube.com/watch?v=8cm1x4bC610" target="_blank">
+  4️⃣ Java Tutorials – Telusko (Concept Based)
+</a> 
+
+<a href="https://www.youtube.com/@TeluguSkillHub/search?query=java" target="_blank">
+  5️⃣ Java Programming in Telugu – Telugu Skill Hub (తెలుగు)
+</a>
+
+  </div>
+
+  <!-- DSA -->
+  <div class="list" id="dsa">
+    <h2>DSA (Ranked)</h2>
+    <div class="rank">Beginner → Advanced</div>
+
+    <a href="https://www.youtube.com/watch?v=pkYVOmU3MgA" target="_blank">
+  1️⃣ Data Structures and Algorithms in Python – Full Course (freeCodeCamp.org)
+</a>
+
+<a href="https://www.youtube.com/playlist?list=PLhR2IpV1b2FwWwviBHRrR118YAaSlyhTU" target="_blank">
+  2️⃣ DSA with Python – Full Playlist (Code and Debug)
+</a>
+
+<a href="https://www.youtube.com/watch?v=vBY_q7zw3qo" target="_blank">
+  3️⃣ Data Structures in Python – Full Crash Course (NeuralNine)
+</a>
+
+<a href="https://www.youtube.com/watch?v=_t2GVaQasRY" target="_blank">
+  4️⃣ Data Structures & Algorithms Tutorial in Python #1 (CodeBasics)
+</a>
+
+<!-- Optional additional -->
+<a href="https://www.youtube.com/search?q=DSA+python+tutorial" target="_blank">
+  5️⃣ More DSA Python Tutorials (YouTube Search)
+</a>
+
+
+  </div>
+
+  <!-- WEB -->
+  <div class="list" id="web">
+    <h2>Web Development (Ranked)</h2>
+    <div class="rank">Beginner → Advanced</div>
+
+    <a href="https://www.youtube.com/watch?v=G3e-cpL7ofc" target="_blank">
+  1️⃣ Web Development Full Course – SUPERSIMPLEDEV (Beginner to Advanced)
+</a>  
+
+<a href="https://www.youtube.com/watch?v=HcOc7P5BMi4" target="_blank">
+  2️⃣ HTML, CSS, JavaScript Full Course – Apna College (Hindi)
+</a>  
+
+<a href="https://www.youtube.com/watch?v=Q33KBiDriJY" target="_blank">
+  3️⃣ Web Development Tutorial – Edureka !
+</a>  
+
+<a href="https://youtu.be/1pcikNlDB-4?si=IDI20YTJgsws3Jhb" target="_blank">
+  4️⃣ Introduction To Web Development – Coder Army
+</a>  
+
+<a href="https://www.youtube.com/@TeluguSkillHub/search?query=web%20development" target="_blank">
+  5️⃣ Web Development in Telugu – Telugu Skill Hub (తెలుగు)
+</a>
+
+  </div>
+
+<!--dsa c -->
+  <div class="list" id="dsac">
+    <h2>DSA With C Language (Ranked)</h2>
+    <div class="rank">Beginner → Advanced</div>
+
+    <a href="https://www.youtube.com/watch?v=MtVZAXepMPM" target="_blank">
+  📌 Data Structures and Algorithms in C – Full Course (Great Learning)
+</a>  
+
+<a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRhX6r2uhhlubuF5QextdCSM" target="_blank">
+  📌 C Programming & Data Structures (Playlist – includes many topics(NESO Academy))
+</a>  
+
+<a href="https://www.youtube.com/watch?v=Db9ZYbJONHc" target="_blank">
+  📌 Introduction to Data Structures in C – Naresh i Technologies
+</a>
+
+
+
+  </div>
+  <!-- dsajava -->
+  <div class="list" id="dsajava">
+    <h2>DSA With Java (Ranked)</h2>
+    <div class="rank">Beginner → Advanced</div>
+
+   
+
+<a href="https://www.youtube.com/playlist?list=PLfqMhTWNBTe3LtFWcvwpqTkUSlB32kJop" target="_blank">
+  📌 DSA in Java – Apna College (Beginner Friendly)
+</a>
+  </div>
+<!-- sql2 -->
+  <div class="list" id="sql2">
+    <h2>SQL (Ranked)</h2>
+    <div class="rank">Beginner → Advanced</div>
+
+    <a href="https://www.youtube.com/watch?v=HXV3zeQKqGY" target="_blank">
+  SQL Full Course – freeCodeCamp.org
+</a>
+
+<a href="https://www.youtube.com/watch?v=zbMHLJ0dY4w" target="_blank">
+  SQL Tutorial for Beginners – Edureka
+</a>
+
+<a href="https://www.youtube.com/watch?v=7S_tz1z_5bA" target="_blank">
+  SQL Tutorial – Programming with Mosh
+</a>
+
+
+
+
+
+  </div>
+
+
+
+</div>
+
+<script>
+function show(id){
+  document.querySelectorAll('.list').forEach(div=>{
+    div.style.display='none';
+  });
+  document.getElementById(id).style.display='block';
+}
+</script>
+
+</body>
+<footer class="footer">
+  <a href="home.html" class="footer-home"> Home</a>
+
+  <p>© 2025 CodeGarage</p>
+  <p>Learn • Practice • Improve</p>
+</footer>
+
+
+</html>
