@@ -82,9 +82,9 @@ button:hover{
 <body>
 
 <script>
-/* Protect page */
+/* ===== PAGE PROTECTION ===== */
 if(!localStorage.getItem("token")){
-  window.location="login.html";
+  window.location = "register.html";
 }
 </script>
 
@@ -94,7 +94,7 @@ if(!localStorage.getItem("token")){
   <div>
     <a href="home.html">Home</a>
     <a href="profile.html">My Account</a>
-    <a href="login.html" onclick="logout()">Logout</a>
+    <a href="#" onclick="logout()">Logout</a>
   </div>
 </nav>
 
@@ -121,16 +121,27 @@ if(!localStorage.getItem("token")){
 </div>
 
 <script>
+/* ===== BACKEND API ===== */
 const API = "https://codegarage-backend.onrender.com";
+/* After custom domain works, replace with:
+const API = "https://api.codegarage.co.in";
+*/
 
-/* Fetch profile */
+/* ===== LOAD PROFILE ===== */
 async function loadProfile(){
   try{
+    const token = localStorage.getItem("token");
+    if(!token) return logout();
+
     const res = await fetch(`${API}/profile`,{
       headers:{
-        "Authorization": "Bearer " + localStorage.getItem("token")
+        "Authorization": "Bearer " + token
       }
     });
+
+    if(res.status === 401){
+      return logout();
+    }
 
     const data = await res.json();
 
@@ -141,13 +152,15 @@ async function loadProfile(){
       logout();
     }
   }catch(err){
+    console.error(err);
     logout();
   }
 }
 
+/* ===== LOGOUT ===== */
 function logout(){
   localStorage.clear();
-  window.location="register.html";
+  window.location = "register.html";
 }
 
 loadProfile();
