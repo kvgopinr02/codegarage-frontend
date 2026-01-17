@@ -307,7 +307,7 @@ button:active{
 
 <script>
 const API = "https://codegarage-backend.onrender.com";
-
+/* ===== CODE TYPING EFFECT ===== */ const codeLines = [ "const CodeGarage = () => {", " console.log('Hello Developer');", "}", "", "npm install skills", "deploy --success" ]; let i = 0; function typeCode(){ if(i < codeLines.length){ document.getElementById("code").innerHTML += codeLines[i] + "<br>"; i++; setTimeout(typeCode, 550); } } typeCode();
 
 
 /* ===== REGISTER ===== */
